@@ -14,6 +14,7 @@ struct homeView: View {
     @State var viewState2 = CGSize.zero
     @State var animat = false
     
+    
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
     let todayColor : Color = Color("lucky")
@@ -21,6 +22,16 @@ struct homeView: View {
     var body: some View {
         let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
         let gradientReversed = LinearGradient(gradient: Gradient(colors: [colorLight, colorDark]), startPoint: .top, endPoint: .bottom)
+        
+//        let components = Calendar.current.dateComponents([.hour], from: Date())
+//        let hour = components.hour
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH"
+        let dateString = formatter.string(from: Date())
+        
+        let clock : CGFloat = NumberFormatter().number(from: dateString) as! CGFloat
+//        let clock : CGFloat = dateString
         
         return
         
@@ -65,15 +76,20 @@ struct homeView: View {
                         Text("顺遂")
                             .font(.custom("indicator", size: 100))
                             .fontWeight(.black)
+                            .shadow(radius: 5, x: 10, y: 10)
                             .foregroundColor(todayColor)
                             .multilineTextAlignment(.center)
                             .frame(width: 100.0)
                         Circle()
-                            .trim(from: 0, to: 0.6)
+                            .trim(from: 0, to: clock / 24)
                             .stroke(todayColor, lineWidth: 6)
                             .frame(width: 300, height: 300)
                             .rotationEffect(Angle(degrees: -90))
                         
+                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 1, time: 2)
+                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 5, time: 6)
+                        
+                
                     }.padding([.leading, .bottom, .trailing])
                         
                 
@@ -90,8 +106,12 @@ struct homeView: View {
 //                            self.animat = true
                     }
                         .onEnded { value in
+                            if self.viewState2.height < -200 {
+                                self.viewState2.height = -740
+                            } else {
                             self.viewState2 = CGSize.zero
 //                            self.animat = false
+                            }
                     })
 
                 bottomCardView()
@@ -102,9 +122,13 @@ struct homeView: View {
 //                            self.animat = true
                     }
                         .onEnded { value in
+                            if self.viewState.height < -200 {
+                                self.viewState.height = -810
+                            } else {
                             self.viewState = CGSize.zero
 //                            self.animat = false
-                    })
+                            }
+                        })
         }
         .edgesIgnoringSafeArea(.all)
     }

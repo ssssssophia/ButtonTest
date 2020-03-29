@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC4911D52430E085005E7DA9 /* smallRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4911D42430E085005E7DA9 /* smallRingView.swift */; };
 		ECD2E95B242774F2005991F8 /* homeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2E95A242774F2005991F8 /* homeView.swift */; };
 		ECD2E95D24279CC5005991F8 /* todayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2E95C24279CC5005991F8 /* todayInfoView.swift */; };
 		ECEFF4FA241A1918000D5E03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEFF4F9241A1918000D5E03 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC4911D42430E085005E7DA9 /* smallRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smallRingView.swift; sourceTree = "<group>"; };
 		ECD2E95A242774F2005991F8 /* homeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeView.swift; sourceTree = "<group>"; };
 		ECD2E95C24279CC5005991F8 /* todayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todayInfoView.swift; sourceTree = "<group>"; };
 		ECEFF4F6241A1918000D5E03 /* ButtonTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ButtonTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 				ECEFF4FB241A1918000D5E03 /* SceneDelegate.swift */,
 				ECEFF4FD241A1918000D5E03 /* softCircleView.swift */,
 				ECD2E95A242774F2005991F8 /* homeView.swift */,
+				EC4911D42430E085005E7DA9 /* smallRingView.swift */,
 				ECD2E95C24279CC5005991F8 /* todayInfoView.swift */,
 				ECEFF4FF241A191D000D5E03 /* Assets.xcassets */,
 				ECEFF504241A191D000D5E03 /* LaunchScreen.storyboard */,
@@ -277,6 +280,7 @@
 				ECEFF4FA241A1918000D5E03 /* AppDelegate.swift in Sources */,
 				ECD2E95B242774F2005991F8 /* homeView.swift in Sources */,
 				ECEFF4FC241A1918000D5E03 /* SceneDelegate.swift in Sources */,
+				EC4911D52430E085005E7DA9 /* smallRingView.swift in Sources */,
 				ECEFF4FE241A1918000D5E03 /* softCircleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
