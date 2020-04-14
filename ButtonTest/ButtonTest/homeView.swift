@@ -10,8 +10,8 @@ import SwiftUI
 
 struct homeView: View {
     
-    @State var viewState = CGSize.zero
-    @State var viewState2 = CGSize.zero
+    @State var budaoState = CGSize.zero
+    @State var wanshiState = CGSize.zero
     @State var animat = false
     
     
@@ -22,6 +22,7 @@ struct homeView: View {
     var body: some View {
         let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
         let gradientReversed = LinearGradient(gradient: Gradient(colors: [colorLight, colorDark]), startPoint: .top, endPoint: .bottom)
+        
         
 //        let components = Calendar.current.dateComponents([.hour], from: Date())
 //        let hour = components.hour
@@ -85,9 +86,11 @@ struct homeView: View {
                             .stroke(todayColor, lineWidth: 6)
                             .frame(width: 300, height: 300)
                             .rotationEffect(Angle(degrees: -90))
+                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                            
                         
-                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 1, time: 2)
-                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 5, time: 6)
+                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 1, time: 0)
+                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 5, time: 16)
                         
                 
                     }.padding([.leading, .bottom, .trailing])
@@ -98,34 +101,36 @@ struct homeView: View {
                     Spacer()
                     
                 }
-                bottomCard2View()
-                    .offset(x: 0, y: viewState2.height)
+                wanshiView()
+                    .offset(x: 0, y: wanshiState.height)
                     .gesture(DragGesture()
                         .onChanged { value in
-                            self.viewState2 = value.translation
+                            self.wanshiState = value.translation
 //                            self.animat = true
                     }
                         .onEnded { value in
-                            if self.viewState2.height < -200 {
-                                self.viewState2.height = -740
+                            if self.wanshiState.height < -200 {
+                                self.wanshiState.height = -740
+                                self.budaoState.height = 100
                             } else {
-                            self.viewState2 = CGSize.zero
+                            self.wanshiState = CGSize.zero
+                            self.budaoState = CGSize.zero
 //                            self.animat = false
                             }
                     })
 
-                bottomCardView()
-                    .offset(x: 0, y: viewState.height)
+                budaoView()
+                    .offset(x: 0, y: budaoState.height)
                     .gesture(DragGesture()
                         .onChanged { value in
-                            self.viewState = value.translation
+                            self.budaoState = value.translation
 //                            self.animat = true
                     }
                         .onEnded { value in
-                            if self.viewState.height < -200 {
-                                self.viewState.height = -810
+                            if self.budaoState.height < -200 {
+                                self.budaoState.height = -810
                             } else {
-                            self.viewState = CGSize.zero
+                            self.budaoState = CGSize.zero
 //                            self.animat = false
                             }
                         })
@@ -140,7 +145,7 @@ struct homeView_Previews: PreviewProvider {
     }
 }
 
-struct bottomCardView: View {
+struct budaoView: View {
     var body: some View {
         VStack(spacing: 15) {
             Rectangle()
@@ -163,7 +168,7 @@ struct bottomCardView: View {
     }
 }
 
-struct bottomCard2View: View {
+struct wanshiView: View {
     var body: some View {
         VStack(spacing: 15) {
             Rectangle()

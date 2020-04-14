@@ -31,7 +31,7 @@ struct smallRingView: View {
             due = false
         }
         
-        let multiplier = due ? width * 1.2 / 44 : width / 44
+//        let multiplier = due ? width * 1.5 / 44 : width / 44
         
         var offsetSize = CGSize.zero
         if time == 0 {
@@ -75,34 +75,56 @@ struct smallRingView: View {
             offsetSize.height = -150
         }
         
+//        if due {
+//            return dueRing()
+//        } else {
+//            return normalRing()
+//        }
+
         return ZStack {
-            
-//            LinearGradient(gradient: Gradient(colors: [Color("bg-light"), Color("bg-dark")]), startPoint: .top, endPoint: .bottom)
-//                .clipShape(Circle())
-//                .frame(width: due ? width * 1.2 : width , height: due ? height * 1.2 : height)
-            
-            Circle()
-                .foregroundColor(ringColor.opacity(0.25))
-//                .stroke(Color("grey-light").opacity(0.1), style: StrokeStyle(lineWidth: 8 * multiplier))
-                .frame(width: due ? width * 1.2 : width , height: due ? height * 1.2 : height)
-                .shadow(color: ringColor.opacity(1), radius: 3, x: 3, y: 3)
-            
-            Circle()
-                .stroke(Color.clear, style: StrokeStyle(lineWidth: 6 * multiplier))
-                .frame(width: due ? width * 1.2 : width , height: due ? height * 1.2 : height)
-//                .shadow(color: ringColor.opacity(0.2), radius: 1, x: 1, y: 1)
-//                .shadow(radius: 3, x: 5, y: 5)
-            Text("\(count)")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(ringColor)
+            if due {
+                ZStack {
+                    
+                    //            LinearGradient(gradient: Gradient(colors: [Color("bg-light"), Color("bg-dark")]), startPoint: .top, endPoint: .bottom)
+                    //                .clipShape(Circle())
+                    //                .frame(width: due ? width * 1.2 : width , height: due ? height * 1.2 : height)
+                    
+                    Circle()
+                        .foregroundColor(Color.white)
+                        //                .stroke(Color("grey-light").opacity(0.1), style: StrokeStyle(lineWidth: 8 * multiplier))
+                        .frame(width: 1.4*width , height: 1.4*height)
+                    //                .shadow(color: ringColor.opacity(1), radius: 3, x: 3, y: 3)
+                    
+                    Circle()
+                        .foregroundColor(ringColor.opacity(0.4))
+                        .frame(width: 1.4*width , height: 1.4*height)
+                        .shadow(color: ringColor.opacity(0.5), radius: 3, x: 5, y: 5)
+                    //                .shadow(radius: 3, x: 5, y: 5)
+                    Text("\(count)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                }
+                    //        .background(ringColor.opacity(0.25))
+                    //        .clipShape(Circle())
+                    //        .rotationEffect(Angle(degrees: time/24*360), anchor: .center)
+                    .offset(offsetSize)
+            } else {
+                ZStack {
+                            Circle()
+                                .foregroundColor(ringColor)
+                                .frame(width: 0.9 * width, height: 0.9 * height)
+                            Text("\(count)")
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.white)
+                        }
+                        .offset(offsetSize)
+            }
         }
-//        .background(ringColor.opacity(0.25))
-//        .clipShape(Circle())
-//        .rotationEffect(Angle(degrees: time/24*360), anchor: .center)
-        .offset(offsetSize)
-//        .shadow(color: ringColor.opacity(1), radius: 2, x: 2, y: 2)
-//        .shadow(radius: 2, x: 2, y: 2)
+        
+
+
     }
 }
 
@@ -111,3 +133,4 @@ struct smallRingView_Previews: PreviewProvider {
         smallRingView()
     }
 }
+
