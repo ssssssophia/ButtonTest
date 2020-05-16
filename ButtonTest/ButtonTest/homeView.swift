@@ -20,19 +20,19 @@ struct homeView: View {
     let todayColor : Color = Color("lucky")
     
     var body: some View {
-        let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
+//        let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
         let gradientReversed = LinearGradient(gradient: Gradient(colors: [colorLight, colorDark]), startPoint: .top, endPoint: .bottom)
         
         
 //        let components = Calendar.current.dateComponents([.hour], from: Date())
 //        let hour = components.hour
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH"
-        let dateString = formatter.string(from: Date())
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "HH"
+//        let dateString = formatter.string(from: Date())
         
-        let clock : CGFloat = NumberFormatter().number(from: dateString) as! CGFloat
-//        let clock : CGFloat = dateString
+//        let clock : CGFloat = NumberFormatter().number(from: dateString) as! CGFloat
+
         
         return
         
@@ -74,26 +74,40 @@ struct homeView: View {
                         softCircleView()
 //                            .opacity( self.animat ? 0 : 1)
                         
-                        Text("顺遂")
-                            .font(.custom("indicator", size: 100))
-                            .fontWeight(.black)
-                            .shadow(radius: 5, x: 10, y: 10)
-                            .foregroundColor(todayColor)
-                            .multilineTextAlignment(.center)
-                            .frame(width: 100.0)
-                        Circle()
-                            .trim(from: 0, to: clock / 24)
-                            .stroke(todayColor, lineWidth: 6)
-                            .frame(width: 300, height: 300)
-                            .rotationEffect(Angle(degrees: -90))
-                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
-                            
-                        
-                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 1, time: 0)
-                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 5, time: 16)
+//                        Text("顺遂")
+//                            .font(.custom("indicator", size: 100))
+//                            .fontWeight(.black)
+//                            .shadow(radius: 5, x: 10, y: 10)
+//                            .foregroundColor(todayColor)
+//                            .multilineTextAlignment(.center)
+//                            .frame(width: 100.0)
+//                        Circle()
+//                            .trim(from: 0, to: clock / 24)
+//                            .stroke(todayColor, lineWidth: 6)
+//                            .frame(width: 300, height: 300)
+//                            .rotationEffect(Angle(degrees: -90))
+//                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+//
+//
+//                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 1, time: 0)
+//                        smallRingView(ringColor: todayColor, width: 44, height: 44, count: 5, time: 16)
                         
                 
-                    }.padding([.leading, .bottom, .trailing])
+                    }.padding([.leading, .trailing])
+                    
+                    HStack{
+                        Spacer().frame(width: 300)
+                        Button(action:{}){
+                            ZStack{
+                                Circle()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(todayColor.opacity(0.7))
+                                Text("水逆")
+                                    .font(.body)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
                         
                 
                     todayInfoView()
