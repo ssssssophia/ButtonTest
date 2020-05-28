@@ -22,13 +22,13 @@ struct todayInfoView: View {
                     ForEach(0..<3) { item in
                         GeometryReader { geometry in
                             todayItemView()
-                                .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minY - 545) ), axis: (x: 20, y: 0, z: 0))
+                                .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minY - 0.6*screenSize.height) ), axis: (x: 20, y: 0, z: 0))
                         }
-                        .frame(width: 260, height: 150)
+                        .frame(width: 0.7*screenSize.width, height: 0.2*screenSize.height)
                     }
                 }
             }
-            .frame(height: 130)
+            .frame(height: 0.2*screenSize.height)
         }
 
     }
@@ -47,7 +47,7 @@ struct todayItemView: View {
                 Spacer()
                 Image("Picture1")
                     .resizable()
-                    .frame(width: 150, height: 120)
+                    .frame(width: 0.4*screenSize.width, height: 0.16*screenSize.height)
                     .shadow(radius: 10, x: 0, y: 10)
             }
             HStack {

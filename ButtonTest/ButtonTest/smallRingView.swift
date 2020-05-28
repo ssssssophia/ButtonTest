@@ -36,43 +36,43 @@ struct smallRingView: View {
         var offsetSize = CGSize.zero
         if time == 0 {
             offsetSize.width = 0
-            offsetSize.height = -150
+            offsetSize.height = -0.375*screenSize.width
         } else if time == 2 {
-            offsetSize.width = 75
-            offsetSize.height = -130
+            offsetSize.width = 0.1875*screenSize.width
+            offsetSize.height = -0.325*screenSize.width
         } else if time == 4 {
-            offsetSize.width = 130
-            offsetSize.height = -75
+            offsetSize.width = 0.325*screenSize.width
+            offsetSize.height = -0.1875*screenSize.width
         } else if time == 6 {
-            offsetSize.width = 150
+            offsetSize.width = 0.375*screenSize.width
             offsetSize.height = 0
         } else if time == 8 {
-            offsetSize.width = 130
-            offsetSize.height = 75
+            offsetSize.width = 0.325*screenSize.width
+            offsetSize.height = 0.1875*screenSize.width
         } else if time == 10 {
-            offsetSize.width = 75
-            offsetSize.height = 130
+            offsetSize.width = 0.1875*screenSize.width
+            offsetSize.height = 0.325*screenSize.width
         } else if time == 12 {
             offsetSize.width = 0
-            offsetSize.height = 150
+            offsetSize.height = 0.375*screenSize.width
         } else if time == 14 {
-            offsetSize.width = -75
-            offsetSize.height = 130
+            offsetSize.width = -0.1875*screenSize.width
+            offsetSize.height = 0.325*screenSize.width
         } else if time == 16 {
-            offsetSize.width = -130
-            offsetSize.height = 75
+            offsetSize.width = -0.325*screenSize.width
+            offsetSize.height = 0.1875*screenSize.width
         } else if time == 18 {
-            offsetSize.width = -150
+            offsetSize.width = -0.375*screenSize.width
             offsetSize.height = 0
         } else if time == 20 {
-            offsetSize.width = -130
-            offsetSize.height = -75
+            offsetSize.width = -0.325*screenSize.width
+            offsetSize.height = -0.1875*screenSize.width
         } else if time == 22 {
-            offsetSize.width = -75
-            offsetSize.height = -130
+            offsetSize.width = -0.1875*screenSize.width
+            offsetSize.height = -0.325*screenSize.width
         } else {
             offsetSize.width = 0
-            offsetSize.height = -150
+            offsetSize.height = -0.375*screenSize.width
         }
         
 //        if due {
@@ -93,12 +93,12 @@ struct smallRingView: View {
                         .foregroundColor(Color.white)
                         //                .stroke(Color("grey-light").opacity(0.1), style: StrokeStyle(lineWidth: 8 * multiplier))
                         .frame(width: 1.4*width , height: 1.4*height)
-                    //                .shadow(color: ringColor.opacity(1), radius: 3, x: 3, y: 3)
+                        .shadow(color: ringColor.opacity(1), radius: 3, x: 2, y: 2)
                     
                     Circle()
-                        .foregroundColor(ringColor.opacity(0.4))
-                        .frame(width: 1.4*width , height: 1.4*height)
-                        .shadow(color: ringColor.opacity(0.5), radius: 3, x: 5, y: 5)
+                        .foregroundColor(ringColor.opacity(1))
+                        .frame(width: 1.1*width , height: 1.1*height)
+//                        .shadow(color: ringColor.opacity(0.5), radius: 3, x: 5, y: 5)
                     //                .shadow(radius: 3, x: 5, y: 5)
                     Text("\(count)")
                         .font(.title)
@@ -111,15 +111,20 @@ struct smallRingView: View {
                     .offset(offsetSize)
             } else {
                 ZStack {
-                            Circle()
-                                .foregroundColor(ringColor)
-                                .frame(width: 0.9 * width, height: 0.9 * height)
-                            Text("\(count)")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.white)
-                        }
-                        .offset(offsetSize)
+                    Circle()
+                        .foregroundColor(Color.white)
+                        //                .stroke(Color("grey-light").opacity(0.1), style: StrokeStyle(lineWidth: 8 * multiplier))
+                        .frame(width: 1.1*width , height: 1.1*height)
+                        .shadow(color: ringColor.opacity(1), radius: 3, x: 2, y: 2)
+                    Circle()
+                        .foregroundColor(Color("grey-median"))
+                        .frame(width: 0.9 * width, height: 0.9 * height)
+                    Text("\(count)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                }
+                .offset(offsetSize)
             }
         }
         
