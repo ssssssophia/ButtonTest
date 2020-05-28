@@ -248,8 +248,8 @@ struct budaoView: View {
             
             Spacer()
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .padding()
+        .frame(width: screenSize.width)
+        .padding(.top)
         .background(Color.white)
         .cornerRadius(30)
         .offset(y: screenSize.height*0.91)
@@ -271,8 +271,8 @@ struct wanshiView: View {
             
             Spacer()
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .padding()
+        .frame(width: screenSize.width)
+        .padding(.top)
         .background(Color.white)
         .cornerRadius(30)
         .offset(y: screenSize.height*0.825)
