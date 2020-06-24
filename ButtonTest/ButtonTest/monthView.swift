@@ -33,13 +33,13 @@ struct monthView: View {
         
         if month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12 {
             monthLen = 31
-            dashLen = 15.2
+            dashLen = 0.75*3.14/62*screenSize.width
         } else if month==2{
             monthLen = 28
-            dashLen = 16.8
+            dashLen = 0.75*3.14/56*screenSize.width
         } else {
             monthLen = 30
-            dashLen = 15.7
+            dashLen = 0.75*3.14/60*screenSize.width
         }
         
 

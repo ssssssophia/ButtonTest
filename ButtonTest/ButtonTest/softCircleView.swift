@@ -69,7 +69,8 @@ struct softCircleView: View {
                     
                 
                 smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 1, time: 0)
-                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 5, time: 16)
+                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 5, time: 12)
+                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 5, time: 18)
             }
             .animation(.default)
             .edgesIgnoringSafeArea(.all)

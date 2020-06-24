@@ -13,7 +13,7 @@ struct smallRingView: View {
     var width : CGFloat = 44
     var height : CGFloat = 44
     var count = 5
-    var time : Double = 10
+    var time : Double = 14
 
     
     var body: some View {
@@ -25,7 +25,7 @@ struct smallRingView: View {
         let clock : Double = NumberFormatter().number(from: dateString) as! Double
         
         var due : Bool = false
-        if time - clock <= 1 {
+        if abs(time - clock) <= 1 {
             due = true
         } else {
             due = false

@@ -12,6 +12,7 @@ struct weekView: View {
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
     let todayColor: Color = Color("cautious")
+
     
 //    @State var isPressed = false
     
@@ -19,26 +20,8 @@ struct weekView: View {
         let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
         let gradientReversed = LinearGradient(gradient: Gradient(colors: [colorLight, colorDark]), startPoint: .top, endPoint: .bottom)
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "E"
-        let dateString = formatter.string(from: Date())
-        let weekday : Int
-        if dateString == "Mon" {
-            weekday = 1
-        } else if dateString == "Tue" {
-            weekday = 2
-        } else if dateString == "Wed" {
-            weekday = 3
-        } else if dateString == "Thu" {
-            weekday = 4
-        } else if dateString == "Fri" {
-            weekday = 5
-        } else if dateString == "Sat" {
-            weekday = 6
-        } else {
-            weekday = 7
-        }
-
+        let weekday = weekdayLookUp()
+        
         
         return
             
@@ -77,14 +60,14 @@ struct weekView: View {
 
                 Circle()
                     .trim(from: 0, to: 1)
-                    .stroke(Color("grey-light").opacity(0.3), style: StrokeStyle(lineWidth: 8.0, lineCap: .round, dash: [67.2]))
+                    .stroke(Color("grey-light").opacity(0.3), style: StrokeStyle(lineWidth: 8.0, lineCap: .round, dash: [0.75*3.14/14*screenSize.width]))
 //                    .stroke(todayColor, lineWidth: 6)
                     .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
                     .rotationEffect(Angle(degrees: -90))
                     .shadow(color: todayColor.opacity(0.5), radius: 8, x: 6, y: 5)
                 Circle()
                     .trim(from: 0, to: CGFloat(weekday / 7))
-                    .stroke(todayColor.opacity(0.7), style: StrokeStyle(lineWidth: 8.0, lineCap: .round, dash: [67.2]))
+                    .stroke(todayColor.opacity(0.7), style: StrokeStyle(lineWidth: 8.0, lineCap: .round, dash: [0.75*3.14/14*screenSize.width]))
 //                    .stroke(todayColor, lineWidth: 6)
                     .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
                     .rotationEffect(Angle(degrees: -90))
@@ -97,6 +80,21 @@ struct weekView: View {
             .animation(.default)
             .edgesIgnoringSafeArea(.all)
         
+    }
+    
+    func weekdayLookUp() -> Int {
+        var weekday : Int
+        
+        let currentDate = Date()
+        let calendar = Calendar.current
+        weekday = calendar.dateComponents([.weekday], from: currentDate).weekday!
+        if weekday == 1 {
+            weekday = 7
+        } else {
+            weekday = weekday - 1
+        }
+        
+        return weekday
     }
 }
 
