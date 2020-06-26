@@ -13,8 +13,6 @@ struct yearView: View {
     let colorDark : Color = Color("bg-dark")
     let todayColor: Color = Color("cautious")
     
-//    @State var isPressed = false
-    
     var body: some View {
         let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
         let gradientReversed = LinearGradient(gradient: Gradient(colors: [colorLight, colorDark]), startPoint: .top, endPoint: .bottom)
@@ -28,7 +26,6 @@ struct yearView: View {
         return
             
             ZStack {
-//                gradientReversed
                 ZStack {
 
                     Circle()
@@ -38,20 +35,12 @@ struct yearView: View {
                         .stroke(gradientReversed, lineWidth: 30)
                         .frame(width: 0.72*screenSize.width, height: 0.72*screenSize.width)
                     
-//                    if isPressed {
-                        gradientReversed
-                            .clipShape(Circle())
-                            .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
-//                    } else {
-//                        gradientReversed
-//                            .clipShape(Circle())
-//                            .frame(width: 330, height: 330)
-//                    }
+                    gradientReversed
+                        .clipShape(Circle())
+                        .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
                 }
                 .blur(radius: 10)
-//                .onTapGesture {
-//                    self.isPressed.toggle()
-//                }
+                
                 Text("谨慎")
                     .font(.custom("indicator", size: screenSize.width*0.21))
                     .fontWeight(.black)
@@ -72,9 +61,6 @@ struct yearView: View {
                     .rotationEffect(Angle(degrees: -90))
                     .shadow(color: todayColor.opacity(0.5), radius: 8, x: 6, y: 5)
                     
-                
-//                smallRingView(ringColor: todayColor, width: 44, height: 44, count: 1, time: 0)
-//                smallRingView(ringColor: todayColor, width: 44, height: 44, count: 5, time: 16)
             }
             .animation(.default)
             .edgesIgnoringSafeArea(.all)

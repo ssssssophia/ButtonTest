@@ -29,7 +29,6 @@ struct softCircleView: View {
         return
             
             ZStack {
-//                gradientReversed
                 ZStack {
 
                     Circle()
@@ -38,21 +37,12 @@ struct softCircleView: View {
                     Circle()
                         .stroke(gradientReversed, lineWidth: 30)
                         .frame(width: 0.72*screenSize.width, height: 0.72*screenSize.width)
-                    
-//                    if isPressed {
                     gradientReversed
                         .clipShape(Circle())
                         .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
-//                    } else {
-//                        gradientReversed
-//                            .clipShape(Circle())
-//                            .frame(width: 330, height: 330)
-//                    }
                 }
                 .blur(radius: 10)
-//                .onTapGesture {
-//                    self.isPressed.toggle()
-//                }
+                
                 Text("谨慎")
                     .font(.custom("indicator", size: screenSize.width*0.21))
                     .fontWeight(.black)
@@ -75,11 +65,7 @@ struct softCircleView: View {
                 smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 9, time: 9)
                 smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 11, time: 11)
                 smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 13, time: 13)
-//                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 15, time: 15)
-//                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 17, time: 17)
-//                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 19, time: 19)
-//                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 21, time: 21)
-//                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 23, time: 23)
+
             }
             .animation(.default)
             .edgesIgnoringSafeArea(.all)

@@ -33,16 +33,6 @@ struct homeView: View {
     var body: some View {
 //        let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
         let gradientReversed = LinearGradient(gradient: Gradient(colors: [colorLight, colorDark]), startPoint: .center, endPoint: .bottom)
-        
-        
-//        let components = Calendar.current.dateComponents([.hour], from: Date())
-//        let hour = components.hour
-
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "HH"
-//        let dateString = formatter.string(from: Date())
-        
-//        let clock : CGFloat = NumberFormatter().number(from: dateString) as! CGFloat
 
         
         return
@@ -51,7 +41,6 @@ struct homeView: View {
             ZStack {
                 gradientReversed
                 ZStack(alignment: .center) {
-//                    Spacer().frame(height: screenSize.width*0.07)
                     HStack {
                         Button(action: {
                             self.showToday = true
@@ -134,7 +123,6 @@ struct homeView: View {
                                     .bold()
                             }
                         }.padding()
-//                        Spacer()
                         Button(action: {}) {
                             Image(systemName: "person.fill")
                                 .resizable()
@@ -145,7 +133,6 @@ struct homeView: View {
                     }
                     .padding(.bottom)
                     .offset(y: -screenSize.height*0.4)
-//                    Spacer().frame(height:screenSize.height*0)
                     ZStack {
                         if showShuini == true{
                             shuiniView()
@@ -178,11 +165,7 @@ struct homeView: View {
                     .padding([.leading, .trailing])
                     .offset(y:-screenSize.height*0.125)
                     
-                    
-                        
-                
-//                    todayInfoView()
-//                        .padding()
+                   
                     Spacer()
                     
                 }
@@ -193,7 +176,6 @@ struct homeView: View {
                     .gesture(DragGesture()
                         .onChanged { value in
                             self.wanshiState = value.translation
-//                            self.animat = true
                     }
                         .onEnded { value in
                             if self.wanshiState.height < -screenSize.height*0.22 {
@@ -202,7 +184,6 @@ struct homeView: View {
                             } else {
                             self.wanshiState = CGSize.zero
                             self.budaoState = CGSize.zero
-//                            self.animat = false
                             }
                     })
                     .animation(.spring())
@@ -212,14 +193,12 @@ struct homeView: View {
                     .gesture(DragGesture()
                         .onChanged { value in
                             self.budaoState = value.translation
-//                            self.animat = true
                     }
                         .onEnded { value in
                             if self.budaoState.height < -screenSize.height*0.22 {
                                 self.budaoState.height = -screenSize.height*0.91
                             } else {
                             self.budaoState = CGSize.zero
-//                            self.animat = false
                             }
                         })
                     .animation(.spring())
