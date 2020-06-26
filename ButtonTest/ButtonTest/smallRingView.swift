@@ -13,7 +13,7 @@ struct smallRingView: View {
     var width : CGFloat = 44
     var height : CGFloat = 44
     var count = 5
-    var time : Double = 14
+    var time : Double = 1
 
     
     var body: some View {
@@ -31,89 +31,70 @@ struct smallRingView: View {
             due = false
         }
         
-//        let multiplier = due ? width * 1.5 / 44 : width / 44
-        
         var offsetSize = CGSize.zero
-        if time == 0 {
-            offsetSize.width = 0
-            offsetSize.height = -0.375*screenSize.width
-        } else if time == 2 {
-            offsetSize.width = 0.1875*screenSize.width
-            offsetSize.height = -0.325*screenSize.width
-        } else if time == 4 {
-            offsetSize.width = 0.325*screenSize.width
-            offsetSize.height = -0.1875*screenSize.width
-        } else if time == 6 {
-            offsetSize.width = 0.375*screenSize.width
-            offsetSize.height = 0
-        } else if time == 8 {
-            offsetSize.width = 0.325*screenSize.width
-            offsetSize.height = 0.1875*screenSize.width
-        } else if time == 10 {
-            offsetSize.width = 0.1875*screenSize.width
-            offsetSize.height = 0.325*screenSize.width
-        } else if time == 12 {
-            offsetSize.width = 0
-            offsetSize.height = 0.375*screenSize.width
-        } else if time == 14 {
-            offsetSize.width = -0.1875*screenSize.width
-            offsetSize.height = 0.325*screenSize.width
-        } else if time == 16 {
-            offsetSize.width = -0.325*screenSize.width
-            offsetSize.height = 0.1875*screenSize.width
-        } else if time == 18 {
-            offsetSize.width = -0.375*screenSize.width
-            offsetSize.height = 0
-        } else if time == 20 {
-            offsetSize.width = -0.325*screenSize.width
-            offsetSize.height = -0.1875*screenSize.width
-        } else if time == 22 {
-            offsetSize.width = -0.1875*screenSize.width
-            offsetSize.height = -0.325*screenSize.width
+        if time == 1 {
+            offsetSize.width = CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = -CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
+        } else if time == 3 {
+            offsetSize.width = CGFloat(sin(45/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = -CGFloat(cos(45/180*Double.pi))*screenSize.width*0.375
+        } else if time == 5 {
+            offsetSize.width = CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = -CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+        } else if time == 7 {
+            offsetSize.width = CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+        } else if time == 9 {
+            offsetSize.width = CGFloat(sin(45/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = CGFloat(cos(45/180*Double.pi))*screenSize.width*0.375
+        } else if time == 11 {
+            offsetSize.width = CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
+        } else if time == 13 {
+            offsetSize.width = -CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
+        } else if time == 15 {
+            offsetSize.width = -CGFloat(sin(45/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = CGFloat(cos(45/180*Double.pi))*screenSize.width*0.375
+        } else if time == 17 {
+            offsetSize.width = -CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+        } else if time == 19 {
+            offsetSize.width = -CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = -CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+        } else if time == 21 {
+            offsetSize.width = -CGFloat(cos(45/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = -CGFloat(sin(45/180*Double.pi))*screenSize.width*0.375
+        } else if time == 23 {
+            offsetSize.width = -CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = -CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
         } else {
-            offsetSize.width = 0
-            offsetSize.height = -0.375*screenSize.width
+            offsetSize.width = CGFloat(sin(15/180*Double.pi))*screenSize.width*0.375
+            offsetSize.height = -CGFloat(cos(15/180*Double.pi))*screenSize.width*0.375
         }
         
-//        if due {
-//            return dueRing()
-//        } else {
-//            return normalRing()
-//        }
 
         return ZStack {
             if due {
                 ZStack {
-                    
-                    //            LinearGradient(gradient: Gradient(colors: [Color("bg-light"), Color("bg-dark")]), startPoint: .top, endPoint: .bottom)
-                    //                .clipShape(Circle())
-                    //                .frame(width: due ? width * 1.2 : width , height: due ? height * 1.2 : height)
-                    
                     Circle()
                         .foregroundColor(Color.white)
-                        //                .stroke(Color("grey-light").opacity(0.1), style: StrokeStyle(lineWidth: 8 * multiplier))
                         .frame(width: 1.4*width , height: 1.4*height)
                         .shadow(color: ringColor.opacity(1), radius: 3, x: 2, y: 2)
                     
                     Circle()
                         .foregroundColor(ringColor.opacity(1))
                         .frame(width: 1.1*width , height: 1.1*height)
-//                        .shadow(color: ringColor.opacity(0.5), radius: 3, x: 5, y: 5)
-                    //                .shadow(radius: 3, x: 5, y: 5)
                     Text("\(count)")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
                 }
-                    //        .background(ringColor.opacity(0.25))
-                    //        .clipShape(Circle())
-                    //        .rotationEffect(Angle(degrees: time/24*360), anchor: .center)
                     .offset(offsetSize)
             } else {
                 ZStack {
                     Circle()
                         .foregroundColor(Color.white)
-                        //                .stroke(Color("grey-light").opacity(0.1), style: StrokeStyle(lineWidth: 8 * multiplier))
                         .frame(width: 1.1*width , height: 1.1*height)
                         .shadow(color: ringColor.opacity(1), radius: 3, x: 2, y: 2)
                     Circle()
