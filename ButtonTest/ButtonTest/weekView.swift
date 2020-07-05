@@ -20,6 +20,7 @@ struct weekView: View {
         
         let weekday = weekdayLookUp()
         
+//        let weekcolor : List = [Color("lucky"), Color("lucky"),Color("cautious"),Color("normal"),Color("normal"),Color("cautious"),Color("normal")]
         
         return
             
@@ -45,7 +46,12 @@ struct weekView: View {
                     .foregroundColor(todayColor)
                     .multilineTextAlignment(.center)
                     .frame(width: screenSize.width*0.21)
-
+                
+                Circle()
+                    .stroke(Color("grey-light").opacity(0.3),style: StrokeStyle(lineWidth: 3.0, lineCap: .round, dash: [0.68*3.14/14*screenSize.width]))
+                    .frame(width: 0.68*screenSize.width)
+                    .rotationEffect(Angle(degrees: -90))
+                
                 Circle()
                     .trim(from: 0, to: 1)
                     .stroke(Color("grey-light").opacity(0.3), style: StrokeStyle(lineWidth: 8.0, lineCap: .round, dash: [0.75*3.14/14*screenSize.width]))
