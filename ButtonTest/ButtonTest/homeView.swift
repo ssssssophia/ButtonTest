@@ -42,36 +42,45 @@ struct homeView: View {
                 ZStack {
                     Rectangle()
                         .foregroundColor(todayColor.opacity(0.3))
-                        .frame(width: screenSize.width, height: screenSize.height*0.3)
-                    Rectangle()
-                        .foregroundColor(Color("grey-light"))
-                        .frame(width:3, height:screenSize.height*0.3)
-//                        .shadow(color: Color("grey-dark") , radius: 1)
-//                        .blur(radius: 3)
+                        .frame(width: screenSize.width-1, height: screenSize.height)
+                        .offset(x: -0.5*screenSize.width)
+                        .blur(radius: 4)
+                    
                     Text("万事")
                         .multilineTextAlignment(.leading)
                         .font(.system(size: 15))
-                        .foregroundColor(Color("grey-light"))
-                        .frame(width: 15.0)
-                        .offset(x: -20, y: 40)
+                        .foregroundColor(animat ? Color(.clear) : Color("grey-light"))
+                        .offset(x: -30, y: screenSize.height*0.125)
+                    Button (action: {self.animat.toggle()}) {
+                        Text("< Back to Home")
+                    }
+                    .offset(x: screenSize.width * -0.78, y: screenSize.height * -0.43)
+                }
+                .offset(x: animat ? screenSize.width*0.5 : 0, y: animat ? screenSize.height * 0: screenSize.height*0.35)
+                .animation(.spring())
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(todayColor.opacity(0.3))
+                        .frame(width: 0.5*screenSize.width-1, height: screenSize.height*0.3)
+                        .offset(x: 0.25*screenSize.width)
+                        .blur(radius: 4)
                     Text("步道")
                         .multilineTextAlignment(.leading)
                         .font(.system(size: 15))
                         .foregroundColor(Color("grey-light"))
-                        .frame(width: 15.0)
-                        .offset(x: 20, y: 40)
+                        .offset(x: 30, y: screenSize.height*0.125)
                 }
                 .offset(x: 0, y: animat ? screenSize.height * 0.85 : screenSize.height*0.35)
                 .animation(.spring())
                 ZStack {
                     ZStack{
                         Rectangle()
-                            .frame(width: screenSize.width, height: screenSize.height*0.75)
+                            .frame(width: screenSize.width, height: screenSize.height*0.8)
                             
                     gradientReversed
                     }
                     .cornerRadius(30)
-                    .offset(y: -screenSize.height*0.175)
+                    .offset(y: -screenSize.height*0.125)
                     .shadow(radius: 20)
                 
                     ZStack(alignment: .center) {
@@ -171,7 +180,7 @@ struct homeView: View {
                             if showShuini == true{
                                 shuiniView()
                             } else if showWeek == true{
-                                weekView()
+                                weekView2()
                             } else if showMonth == true{
                                 monthView()
                             } else if showYear == true{
@@ -202,10 +211,10 @@ struct homeView: View {
                        
                         Spacer()
                         todayInfoView()
-                        .offset(y:screenSize.height*0.2)
+                        .offset(y:screenSize.height*0.25)
                     }
                 }
-                .offset(x: 0, y: animat ? screenSize.height * -0.85 : 0)
+                .offset(x: 0, y: animat ? screenSize.height * -0.9 : 0)
                 .animation(.spring())
                 
 //                wanshiView()
@@ -243,7 +252,7 @@ struct homeView: View {
                 Circle()
                     .frame(width: 0.15*screenSize.width)
                     .foregroundColor(self.todayColor)
-                    .offset(x: 0, y: animat ? screenSize.height * -0.6 : screenSize.height*0.325)
+                    .offset(x: 0, y: animat ? screenSize.height * -0.6 : screenSize.height*0.375)
                     .shadow(color:self.todayColor, radius: 3, x: 0, y: 3)
                     .animation(.spring())
                 }

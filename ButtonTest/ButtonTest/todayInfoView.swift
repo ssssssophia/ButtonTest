@@ -22,7 +22,7 @@ struct todayInfoView: View {
                     ForEach(0..<3) { item in
                         GeometryReader { geometry in
                             todayItemView()
-                                .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minY - 0.6*screenSize.height) ), axis: (x: 20, y: 0, z: 0))
+                                .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minY - 0.65*screenSize.height) ), axis: (x: 20, y: 0, z: 0))
                         }
                         .frame(width: 0.7*screenSize.width, height: 0.2*screenSize.height)
                     }

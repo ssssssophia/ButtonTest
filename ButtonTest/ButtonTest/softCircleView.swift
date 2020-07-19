@@ -33,13 +33,13 @@ struct softCircleView: View {
 
                     Circle()
                         .stroke(gradient, lineWidth: 30)
-                        .frame(width: 0.68*screenSize.width, height: 0.68*screenSize.width)
+                        .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
                     Circle()
                         .stroke(gradientReversed, lineWidth: 30)
-                        .frame(width: 0.72*screenSize.width, height: 0.72*screenSize.width)
+                        .frame(width: 0.7*screenSize.width, height: 0.7*screenSize.width)
                     gradientReversed
                         .clipShape(Circle())
-                        .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
+                        .frame(width: 0.6*screenSize.width, height: 0.6*screenSize.width)
                 }
                 .blur(radius: 10)
                 
@@ -50,6 +50,8 @@ struct softCircleView: View {
                     .foregroundColor(todayColor)
                     .multilineTextAlignment(.center)
                     .frame(width: screenSize.width*0.21)
+                    .lineSpacing(/*@START_MENU_TOKEN@*/-13.0/*@END_MENU_TOKEN@*/)
+                
                 Circle()
                     .trim(from: 0, to: clock / 24)
                     .stroke(todayColor, style: StrokeStyle(lineWidth: 6.0, lineCap: .round))

@@ -1,14 +1,20 @@
 //
-//  weekView.swift
+//  weekView2.swift
 //  ButtonTest
 //
-//  Created by Wang Sunyechu on 5/24/20.
+//  Created by Wang Sunyechu on 7/11/20.
 //  Copyright © 2020 Wang Sunyechu. All rights reserved.
 //
 
+
 import SwiftUI
 
-struct weekView: View {
+let weekday = weekdayLookUp()
+
+let weekColor = ["lucky", "normal", "normal", "cautious", "normal", "normal", "normal"]
+let weekText = ["顺遂", "尚可", "尚可", "谨慎", "尚可", "尚可", "尚可"]
+
+struct weekView2: View {
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
 //    let todayColor: Color = Color("cautious")
@@ -18,15 +24,8 @@ struct weekView: View {
         let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
         let gradientReversed = LinearGradient(gradient: Gradient(colors: [colorLight, colorDark]), startPoint: .top, endPoint: .bottom)
         
-        let weekday = weekdayLookUp()
-        
-        let weekcolor = ["lucky", "normal", "normal", "cautious", "normal", "normal", "normal"]
-        let weekText = ["顺遂", "尚可", "尚可", "谨慎", "尚可", "尚可", "尚可"]
-        
-        let todayColor: Color = Color(weekcolor[weekday])
-        let todayText = weekText[weekday]
-        
-//        let weekcolor : List = [Color("lucky"), Color("lucky"),Color("cautious"),Color("normal"),Color("normal"),Color("cautious"),Color("normal")]
+        let todayColor: Color = Color(weekColor[weekday-1])
+        let todayText = weekText[weekday-1]
         
         return
             
@@ -64,37 +63,56 @@ struct weekView: View {
                     .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
                     .rotationEffect(Angle(degrees: -90))
                     .shadow(color: todayColor.opacity(0.5), radius: 8, x: 6, y: 5)
-                Circle()
-                    .trim(from: 0, to: CGFloat(Double(weekday)-0.5) / 7)
-                    .stroke(todayColor.opacity(0.7), style: StrokeStyle(lineWidth: 8.0, lineCap: .round, dash: [0.75*3.14/14*screenSize.width]))
-                    .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
-                    .rotationEffect(Angle(degrees: -90))
-                    .shadow(color: todayColor.opacity(0.5), radius: 8, x: 6, y: 5)
-                    
+                   
+                ZStack {
+                    ForEach((0...weekday-1), id:\.self) { day in
+                        colorWeekRing(day: day)
+                    }
+                }
+                
+                
             }
-            .animation(.default)
-            .edgesIgnoringSafeArea(.all)
+//            .animation(.default)
+//            .edgesIgnoringSafeArea(.all)
         
     }
     
-    func weekdayLookUp() -> Int {
-        var weekday : Int
-        
-        let currentDate = Date()
-        let calendar = Calendar.current
-        weekday = calendar.dateComponents([.weekday], from: currentDate).weekday!
-        if weekday == 1 {
-            weekday = 7
-        } else {
-            weekday = weekday - 1
-        }
-        
-        return weekday
+    
+}
+
+struct weekView2_Previews: PreviewProvider {
+    static var previews: some View {
+        weekView2()
     }
 }
 
-struct weekView_Previews: PreviewProvider {
-    static var previews: some View {
-        weekView()
+struct colorWeekRing: View {
+    var day: Int = 0
+
+    var body: some View {
+
+        Circle()
+            .trim(from: 0, to: 1/14)
+            .stroke(Color(weekColor[day]).opacity(0.7), style: StrokeStyle(lineWidth: 8.0, lineCap: .round))
+            .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
+            .rotationEffect(Angle(degrees: Double(-90 + day*360/7)))
+            .shadow(color: Color(weekColor[day]).opacity(0.5), radius: 8, x: 6, y: 5)
+            
+        
     }
+}
+
+func weekdayLookUp() -> Int {
+    var weekday : Int
+    
+    let currentDate = Date()
+    let calendar = Calendar.current
+    weekday = calendar.dateComponents([.weekday], from: currentDate).weekday!
+    if weekday == 1 {
+        weekday = 7
+    } else {
+        weekday = weekday - 1
+    }
+    
+    return weekday
 }

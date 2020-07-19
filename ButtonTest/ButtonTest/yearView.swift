@@ -30,14 +30,14 @@ struct yearView: View {
 
                     Circle()
                         .stroke(gradient, lineWidth: 30)
-                        .frame(width: 0.68*screenSize.width, height: 0.68*screenSize.width)
+                        .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
                     Circle()
                         .stroke(gradientReversed, lineWidth: 30)
-                        .frame(width: 0.72*screenSize.width, height: 0.72*screenSize.width)
+                        .frame(width: 0.7*screenSize.width, height: 0.7*screenSize.width)
                     
                     gradientReversed
                         .clipShape(Circle())
-                        .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
+                        .frame(width: 0.6*screenSize.width, height: 0.6*screenSize.width)
                 }
                 .blur(radius: 10)
                 
@@ -55,7 +55,7 @@ struct yearView: View {
                     .rotationEffect(Angle(degrees: -90))
                     .shadow(color: todayColor.opacity(0.5), radius: 8, x: 6, y: 5)
                 Circle()
-                    .trim(from: 0, to: month / 12)
+                    .trim(from: 0, to: CGFloat(month-0.5) / 12)
                     .stroke(todayColor, style: StrokeStyle(lineWidth: 8.0, lineCap: .round, dash: [0.75*screenSize.width*3.14/24]))
                     .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
                     .rotationEffect(Angle(degrees: -90))
