@@ -12,6 +12,7 @@ let firstWeekday = monthWeekdayLookUp()
 
 let monthColor = ["lucky", "normal", "normal", "cautious", "normal", "normal", "normal", "lucky", "normal", "normal", "cautious", "normal", "normal", "normal", "lucky", "normal", "normal", "cautious", "normal", "normal", "normal", "lucky", "normal", "normal", "cautious", "normal", "normal", "normal", "lucky", "lucky", "cautious"]
 let monthText = ["顺遂", "尚可", "尚可", "谨慎", "尚可", "尚可", "尚可", "顺遂", "尚可", "尚可", "谨慎", "尚可", "尚可", "尚可", "顺遂", "尚可", "尚可", "谨慎", "尚可", "尚可", "尚可", "顺遂", "尚可", "尚可", "谨慎", "尚可", "尚可", "尚可", "顺遂", "顺遂", "谨慎"]
+let monthTodo = ["grey-light", "grey-dark", "grey-dark", "grey-light", "grey-dark", "grey-light", "grey-dark", "grey-dark", "grey-dark", "grey-dark", "grey-dark", "grey-dark", "grey-light", "grey-light", "grey-dark", "grey-dark", "grey-dark", "grey-light", "grey-light", "grey-dark", "grey-dark", "grey-light", "grey-dark", "grey-light", "grey-dark", "grey-dark", "grey-dark", "grey-dark", "grey-light", "grey-light", "grey-light"]
 
 var monthLen : Int = 30
 var dashLen : CGFloat = 0.75*3.14/60*screenSize.width
@@ -86,29 +87,9 @@ struct monthView: View {
                     .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
                     .rotationEffect(Angle(degrees: -90))
                     .shadow(color: todayColor.opacity(0.5), radius: 8, x: 6, y: 5)
-//                Circle()
-//                    .trim(from: 0, to: (day-0.5) / CGFloat(monthLen))
-//                    .stroke(todayColor.opacity(0.7), style: StrokeStyle(lineWidth: 8.0, lineCap: .round, dash: [dashLen]))
-//                    .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
-//                    .rotationEffect(Angle(degrees: -90))
-//                    .shadow(color: todayColor.opacity(0.5), radius: 8, x: 6, y: 5)
-//
-//                ZStack {
-//                    Circle()
-//                        .trim(from: 0, to: firstWeekLen)
-//                        .stroke(Color("grey-light").opacity(0.3), style: StrokeStyle(lineWidth: 12.0, lineCap: .round))
-//                        .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
-//                        .rotationEffect(Angle(degrees: -90))
-//                    ForEach((0...7-firstWeekday), id:\.self) { day in
-//                        colorMonthlyWeekRing(day: day)
-//                    }
-//                }
-                ZStack {
-                    ForEach((0...firstWeekday), id:\.self) { day in
-                        colorMonthlyWeekRing(day: day)
-                    }
-                }
+
                 colorMonthlyRing()
+                todoMonthlyRing()
             }
             .animation(.default)
             .edgesIgnoringSafeArea(.all)
@@ -146,10 +127,10 @@ struct colorMonthlyWeekRing: View {
 
         Circle()
             .trim(from: 0, to: 0.5/CGFloat(monthLen))
-            .stroke(Color(weekColor[day]).opacity(0.7), style: StrokeStyle(lineWidth: 8.0, lineCap: .round))
+            .stroke(Color(monthColor[day]).opacity(0.7), style: StrokeStyle(lineWidth: 8.0, lineCap: .round))
             .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
             .rotationEffect(Angle(degrees: Double(-90 + day*360/monthLen)))
-            .shadow(color: Color(weekColor[day]).opacity(0.5), radius: 8, x: 6, y: 5)
+            .shadow(color: Color(monthColor[day]).opacity(0.5), radius: 8, x: 6, y: 5)
             
         
     }
@@ -158,16 +139,30 @@ struct colorMonthlyWeekRing: View {
 struct colorMonthlyRing: View {
     var body: some View {
         
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd"
-//        let dateString = formatter.string(from: Date())
-//        let date : Int = NumberFormatter().number(from: dateString) as! Int
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        let dateString = formatter.string(from: Date())
+        let date : Int = NumberFormatter().number(from: dateString) as! Int
         
         return
             ZStack {
-                ForEach((5...6), id:\.self) { day in
+                ForEach((0...date), id:\.self) { day in
                     colorMonthlyWeekRing(day: day)
                 }
             }
+    }
+}
+
+struct todoMonthlyRing: View {
+    var body: some View {
+        ZStack {
+            ForEach((0...monthLen), id:\.self) { day in
+                Circle()
+                    .trim(from: 0, to: 0.5/CGFloat(monthLen))
+                    .stroke(Color(monthTodo[day]).opacity(0.3), style: StrokeStyle(lineWidth: 3.0, lineCap: .round))
+                    .frame(width: 0.68*screenSize.width, height: 0.68*screenSize.width)
+                    .rotationEffect(Angle(degrees: Double(-90 + day*360/monthLen)))
+            }
+        }
     }
 }
