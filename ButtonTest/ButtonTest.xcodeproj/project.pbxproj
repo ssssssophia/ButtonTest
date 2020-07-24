@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC4911D52430E085005E7DA9 /* smallRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4911D42430E085005E7DA9 /* smallRingView.swift */; };
 		EC56796624B9B55100A7FA24 /* weekView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56796524B9B55100A7FA24 /* weekView2.swift */; };
+		EC6E9C6F24C74F2400D874E0 /* blurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6E9C6E24C74F2400D874E0 /* blurView.swift */; };
 		ECA391EE247A4A97007C9139 /* weekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA391ED247A4A97007C9139 /* weekView.swift */; };
 		ECA391F0247A4AA5007C9139 /* monthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA391EF247A4AA5007C9139 /* monthView.swift */; };
 		ECA391F2247A4CD3007C9139 /* yearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA391F1247A4CD3007C9139 /* yearView.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		EC4911D42430E085005E7DA9 /* smallRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smallRingView.swift; sourceTree = "<group>"; };
 		EC56796524B9B55100A7FA24 /* weekView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekView2.swift; sourceTree = "<group>"; };
+		EC6E9C6E24C74F2400D874E0 /* blurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blurView.swift; sourceTree = "<group>"; };
 		ECA391ED247A4A97007C9139 /* weekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekView.swift; sourceTree = "<group>"; };
 		ECA391EF247A4AA5007C9139 /* monthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = monthView.swift; sourceTree = "<group>"; };
 		ECA391F1247A4CD3007C9139 /* yearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yearView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				EC56796524B9B55100A7FA24 /* weekView2.swift */,
 				ECD2E95A242774F2005991F8 /* homeView.swift */,
 				EC4911D42430E085005E7DA9 /* smallRingView.swift */,
+				EC6E9C6E24C74F2400D874E0 /* blurView.swift */,
 				ECD2E95C24279CC5005991F8 /* todayInfoView.swift */,
 				ECEFF4FF241A191D000D5E03 /* Assets.xcassets */,
 				ECEFF504241A191D000D5E03 /* LaunchScreen.storyboard */,
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC56796624B9B55100A7FA24 /* weekView2.swift in Sources */,
+				EC6E9C6F24C74F2400D874E0 /* blurView.swift in Sources */,
 				ECA391EE247A4A97007C9139 /* weekView.swift in Sources */,
 				ECE67AB7246FDDEA000A0A4C /* shuiniView.swift in Sources */,
 				ECD2E95D24279CC5005991F8 /* todayInfoView.swift in Sources */,
