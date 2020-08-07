@@ -39,7 +39,7 @@ struct smallRingView: View {
                             .foregroundColor(ringColor.opacity(1))
                             .frame(width: 1.3*width , height: 1.3*height)
                             .shadow(color: ringColor.opacity(1), radius: 5, x: 3, y: 3)
-                        blurView(style: .systemThinMaterial).clipShape(Circle())
+                        blurView(style: .systemUltraThinMaterialLight).clipShape(Circle())
                             .frame(width: 1.3 * width, height: 1.3 * height)
                             .foregroundColor(ringColor)
                             .shadow(color: ringColor.opacity(1),radius: 5)
@@ -54,7 +54,7 @@ struct smallRingView: View {
             } else {
                 ZStack {
                     ZStack {
-                        blurView(style: .systemThinMaterial).clipShape(Circle())
+                        blurView(style: .systemUltraThinMaterialLight).clipShape(Circle())
                             .frame(width: 0.9 * width, height: 0.9 * height)
                             .shadow(radius: 5)
                             .shadow(color: Color("grey-light"), radius: 5, x: 3, y: 3)

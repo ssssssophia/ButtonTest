@@ -33,13 +33,13 @@ struct softCircleView: View {
 
                     Circle()
                         .stroke(gradient, lineWidth: 30)
-                        .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
+                        .frame(width: 0.68*screenSize.width, height: 0.68*screenSize.width)
                     Circle()
                         .stroke(gradientReversed, lineWidth: 30)
                         .frame(width: 0.7*screenSize.width, height: 0.7*screenSize.width)
                     gradientReversed
                         .clipShape(Circle())
-                        .frame(width: 0.6*screenSize.width, height: 0.6*screenSize.width)
+                        .frame(width: 0.5*screenSize.width, height: 0.5*screenSize.width)
                 }
                 .blur(radius: 10)
                 
