@@ -12,6 +12,7 @@ import SwiftUI
 let weekday = weekdayLookUp()
 
 let weekColor = ["lucky", "normal", "normal", "cautious", "normal", "normal", "normal"]
+
 let weekText = ["顺遂", "尚可", "尚可", "谨慎", "尚可", "尚可", "尚可"]
 
 struct weekView2: View {
@@ -34,13 +35,13 @@ struct weekView2: View {
 
                     Circle()
                         .stroke(gradient, lineWidth: 30)
-                        .frame(width: 0.65*screenSize.width, height: 0.65*screenSize.width)
+                        .frame(width: 0.5*screenSize.width, height: 0.5*screenSize.width)
                     Circle()
                         .stroke(gradientReversed, lineWidth: 30)
-                        .frame(width: 0.7*screenSize.width, height: 0.7*screenSize.width)
+                        .frame(width: 0.5*screenSize.width, height: 0.5*screenSize.width)
                     gradientReversed
                         .clipShape(Circle())
-                        .frame(width: 0.6*screenSize.width, height: 0.6*screenSize.width)
+                        .frame(width: 0.45*screenSize.width, height: 0.45*screenSize.width)
                 }
                 .blur(radius: 10)
                 

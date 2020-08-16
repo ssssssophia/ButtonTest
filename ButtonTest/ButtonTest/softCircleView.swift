@@ -12,7 +12,7 @@ struct softCircleView: View {
     
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
-    let todayColor: Color = Color("cautious")
+    let todayColor: Color = Color("lucky")
     
 //    @State var isPressed = false
     
@@ -29,19 +29,19 @@ struct softCircleView: View {
         return
             
             ZStack {
-                ZStack {
-
-                    Circle()
-                        .stroke(gradient, lineWidth: 30)
-                        .frame(width: 0.68*screenSize.width, height: 0.68*screenSize.width)
-                    Circle()
-                        .stroke(gradientReversed, lineWidth: 30)
-                        .frame(width: 0.7*screenSize.width, height: 0.7*screenSize.width)
-                    gradientReversed
-                        .clipShape(Circle())
-                        .frame(width: 0.5*screenSize.width, height: 0.5*screenSize.width)
-                }
-                .blur(radius: 10)
+//                ZStack {
+//
+//                    Circle()
+//                        .stroke(gradient, lineWidth: 30)
+//                        .frame(width: 0.5*screenSize.width, height: 0.5*screenSize.width)
+//                    Circle()
+//                        .stroke(gradientReversed, lineWidth: 30)
+//                        .frame(width: 0.5*screenSize.width, height: 0.5*screenSize.width)
+//                    gradientReversed
+//                        .clipShape(Circle())
+//                        .frame(width: 0.45*screenSize.width, height: 0.45*screenSize.width)
+//                }
+//                .blur(radius: 10)
                 
                 Text("谨慎")
                     .font(.custom("indicator", size: screenSize.width*0.21))
@@ -66,7 +66,7 @@ struct softCircleView: View {
                 smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 5, time: 5)
                 smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 7, time: 7)
                 smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 9, time: 9)
-                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 11, time: 11)
+                smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 11, time: 21)
                 smallRingView(ringColor: todayColor, width: screenSize.width*0.1, height: screenSize.width*0.1, count: 13, time: 17)
 
             }
