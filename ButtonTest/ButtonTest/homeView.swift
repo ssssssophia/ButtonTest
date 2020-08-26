@@ -10,6 +10,24 @@ import SwiftUI
 
 let screenSize : CGRect = UIScreen.main.bounds
 
+extension AnyTransition {
+    static var moveAndFade: AnyTransition {
+        let insertion = AnyTransition.move(edge: .leading)
+            .combined(with: .opacity)
+        let removal = AnyTransition.move(edge: .leading)
+            .combined(with: .opacity)
+        return .asymmetric(insertion: insertion, removal: removal)
+    }
+}
+
+extension Animation {
+    static func ripple(index: Int) -> Animation {
+        Animation.spring(dampingFraction: 0.5)
+            .speed(2)
+            .delay(0.03 * Double(index))
+    }
+}
+
 struct homeView: View {
     
     @State var budaoState = CGSize.zero
@@ -20,10 +38,8 @@ struct homeView: View {
     @State var showMonth : Bool = false
     @State var showYear : Bool = false
     @State var showShuini : Bool = false
-    @State var todayButtonColor : Color = Color("grey-light")
-    @State var weekButtonColor : Color = Color("grey-light") 
-    @State var monthButtonColor : Color = Color("grey-light")
-    @State var yearButtonColor : Color = Color("grey-light")
+    @State var showToolBar : Bool = false
+    @State var contentText = String("日")
     
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
@@ -32,8 +48,7 @@ struct homeView: View {
     
     var body: some View {
 //        let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
-        let gradientReversed = LinearGradient(gradient: Gradient(colors: [colorLight, colorDark]), startPoint: .center, endPoint: .bottom)
-
+        let gradientReversed = LinearGradient(gradient: Gradient(colors: [todayColor.opacity(0.2), todayColor.opacity(0.01)]), startPoint: .center, endPoint: .bottom)
         
         return
         
@@ -61,7 +76,7 @@ struct homeView: View {
                 ZStack {
                     Rectangle()
                         .foregroundColor(todayColor.opacity(0.3))
-                        .frame(width: 0.5*screenSize.width-1, height: screenSize.height*0.3)
+                        .frame(width: 0.5*screenSize.width-1, height: screenSize.height)
                         .offset(x: 0.25*screenSize.width)
                         .blur(radius: 4)
                     Text("步道")
@@ -70,112 +85,105 @@ struct homeView: View {
                         .foregroundColor(Color("grey-light"))
                         .offset(x: 30, y: screenSize.height*0.125)
                 }
-                .offset(x: 0, y: animat ? screenSize.height * 0.85 : screenSize.height*0.35)
+                .offset(x: 0, y: animat ? screenSize.height : screenSize.height*0.35)
                 .animation(.spring())
                 ZStack {
                     ZStack{
                         Rectangle()
-                            .frame(width: screenSize.width, height: screenSize.height*0.8)
+                            .foregroundColor(Color.white)
+//                            .frame(width: screenSize.width, height: screenSize.height)
                             
-                    gradientReversed
+                        gradientReversed
                     }
                     .cornerRadius(30)
                     .offset(y: -screenSize.height*0.125)
                     .shadow(radius: 20)
                 
-                    ZStack(alignment: .center) {
-                        HStack {
-                            Button(action: {
-                                self.showToday = true
-                                self.showWeek = false
-                                self.showMonth = false
-                                self.showYear = false
-                                self.showShuini = false
-                                self.todayButtonColor = self.todayColor
-                                self.weekButtonColor = Color("grey-light")
-                                self.monthButtonColor = Color("grey-light")
-                                self.yearButtonColor = Color("grey-light")
-                            }) {
-                                ZStack {
-                                    Circle()
-                                        .foregroundColor(todayButtonColor)
-                                        .frame(width: 0.1*screenSize.width, height: 0.1*screenSize.width)
-                                        
-                                    Text("日")
-                                        .foregroundColor(.white)
-                                        .bold()
+                    ZStack {
+                        ZStack{
+                            if !showToolBar {
+                                    Button (action: {
+//                                        withAnimation(.easeInOut) {
+                                            self.showToolBar.toggle()
+//                                        }
+                                    }) {
+                                        neumButtonView(text: .constant(contentText), todayColor: .constant(todayColor))
+                                    }
+                                    .offset(x:-screenSize.width*0.38)
+                                    
+                            } else {
+                            HStack {
+                                Button(action: {
+                                    self.showToday = true
+                                    self.showWeek = false
+                                    self.showMonth = false
+                                    self.showYear = false
+                                    self.showShuini = false
+                                    withAnimation {
+                                        self.showToolBar.toggle()
+                                    }
+                                    self.contentText = "日"
+                                }) {
+                                    neumButton(text: "日", todayColor: todayColor)
+                                    .scaleEffect(0.8)
+                                }.padding(5)
+                                Button(action: {
+                                    self.showToday = false
+                                    self.showWeek = true
+                                    self.showMonth = false
+                                    self.showYear = false
+                                    self.showShuini = false
+                                    withAnimation {
+                                        self.showToolBar.toggle()
+                                    }
+                                    self.contentText = "周"
+                                }) {
+                                    neumButton(text: "周", todayColor: todayColor)
+                                    .scaleEffect(0.8)
+                                }.padding(5)
+                                Button(action: {
+                                    self.showToday = false
+                                    self.showWeek = false
+                                    self.showMonth = true
+                                    self.showYear = false
+                                    self.showShuini = false
+                                    withAnimation {
+                                        self.showToolBar.toggle()
+                                    }
+                                    self.contentText = "月"
+                                }) {
+                                    neumButton(text: "月", todayColor: todayColor)
+                                    .scaleEffect(0.8)
+                                }.padding(5)
+                                Button(action: {
+                                    self.showToday = false
+                                    self.showWeek = false
+                                    self.showMonth = false
+                                    self.showYear = true
+                                    self.showShuini = false
+                                    withAnimation {
+                                        self.showToolBar.toggle()
+                                    }
+                                    self.contentText = "年"
+                                }) {
+                                    neumButton(text: "年", todayColor: todayColor)
+                                        .scaleEffect(0.8)
+                                }.padding(5)
                                 }
-                            }.padding()
-                            Button(action: {
-                                self.showToday = false
-                                self.showWeek = true
-                                self.showMonth = false
-                                self.showYear = false
-                                self.showShuini = false
-                                self.weekButtonColor = self.todayColor
-                                self.todayButtonColor = Color("grey-light")
-                                self.monthButtonColor = Color("grey-light")
-                                self.yearButtonColor = Color("grey-light")
-                            }) {
-                                ZStack {
-                                    Circle()
-                                        .foregroundColor(weekButtonColor)
-                                        .frame(width: 0.1*screenSize.width, height: 0.1*screenSize.width)
-                                    Text("周")
-                                        .foregroundColor(.white)
-                                        .bold()
+                            .transition(.moveAndFade)
+                            .offset(x:-screenSize.width*0.12)
+                                
                                 }
-                            }.padding()
-                            Button(action: {
-                                self.showToday = false
-                                self.showWeek = false
-                                self.showMonth = true
-                                self.showYear = false
-                                self.showShuini = false
-                                self.monthButtonColor = self.todayColor
-                                self.todayButtonColor = Color("grey-light")
-                                self.weekButtonColor = Color("grey-light")
-                                self.yearButtonColor = Color("grey-light")
-                            }) {
-                                ZStack {
-                                    Circle()
-                                        .foregroundColor(monthButtonColor)
-                                        .frame(width: 0.1*screenSize.width, height: 0.1*screenSize.width)
-                                    Text("月")
-                                        .foregroundColor(.white)
-                                        .bold()
-                                }
-                            }.padding()
-                            Button(action: {
-                                self.showToday = false
-                                self.showWeek = false
-                                self.showMonth = false
-                                self.showYear = true
-                                self.showShuini = false
-                                self.yearButtonColor = self.todayColor
-                                self.todayButtonColor = Color("grey-light")
-                                self.weekButtonColor = Color("grey-light")
-                                self.monthButtonColor = Color("grey-light")
-                            }) {
-                                ZStack {
-                                    Circle()
-                                        .foregroundColor(yearButtonColor)
-                                        .frame(width: 0.1*screenSize.width, height: 0.1*screenSize.width)
-                                    Text("年")
-                                        .foregroundColor(.white)
-                                        .bold()
-                                }
-                            }.padding()
                             Button(action: {}) {
                                 Image(systemName: "person.fill")
                                     .resizable()
                                     .frame(width: 24, height: 24)
                                     .foregroundColor(Color("grey-light"))
-                            }.padding(.trailing)
-                                .offset(x: 10)
-                        }
-                        .padding(.bottom)
-                        .offset(y: -screenSize.height*0.4)
+                            }.padding(.trailing, 30)
+                                    .offset(x: screenSize.width*0.4)
+                        
+                        }.padding(.bottom)
+                        .offset(y: -screenSize.height*0.38)
                         ZStack {
                             if showShuini == true{
                                 shuiniView()
@@ -249,10 +257,12 @@ struct homeView: View {
 //                        })
 //                    .animation(.spring())
             ZStack {
-                Circle()
-                    .frame(width: 0.15*screenSize.width)
+                Rectangle()
+                    .frame(width: 0.15*screenSize.width, height: 0.15*screenSize.width)
+                    .cornerRadius(20)
+                    .rotationEffect(Angle(degrees: 45))
                     .foregroundColor(self.todayColor)
-                    .offset(x: 0, y: animat ? screenSize.height * -0.6 : screenSize.height*0.375)
+                    .offset(x: 0, y: animat ? screenSize.height * -0.6 : screenSize.height*0.38)
                     .shadow(color:self.todayColor, radius: 3, x: 0, y: 3)
                     .animation(.spring())
                 }
