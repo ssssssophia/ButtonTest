@@ -13,6 +13,7 @@ struct softCircleView: View {
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
     let todayColor: Color = Color("lucky")
+    let todayColorLight: Color = Color("lucky-light")
     
 //    @State var isPressed = false
     
@@ -23,36 +24,31 @@ struct softCircleView: View {
         let clock : CGFloat = NumberFormatter().number(from: dateString) as! CGFloat
 
         let lintGradient = AngularGradient(
-            gradient: Gradient(colors: [todayColor, todayColor.opacity(0.3)]),
+            gradient: Gradient(colors: [todayColor, todayColor.opacity(0)]),
         center: .center,
         startAngle: .degrees(Double(clock) * 15),
         endAngle: .degrees(0))
         
+        let circleGradient = LinearGradient(
+            gradient: Gradient(colors: [todayColor, Color.white]), startPoint: .bottomTrailing, endPoint: .topLeading)
+        
         return
             
             ZStack {
-//                ZStack {
-//
-//                    Circle()
-//                        .stroke(gradient, lineWidth: 30)
-//                        .frame(width: 0.5*screenSize.width, height: 0.5*screenSize.width)
-//                    Circle()
-//                        .stroke(gradientReversed, lineWidth: 30)
-//                        .frame(width: 0.5*screenSize.width, height: 0.5*screenSize.width)
-//                    gradientReversed
-//                        .clipShape(Circle())
-//                        .frame(width: 0.45*screenSize.width, height: 0.45*screenSize.width)
-//                }
-//                .blur(radius: 10)
                 Circle()
-                    .frame(width: 0.55*screenSize.width, height: 0.55*screenSize.width)
-                    .foregroundColor(Color.white)
-                    .blur(radius: 10)
+                    .fill(circleGradient)
+                    .frame(width: 0.7*screenSize.width)
+                Circle()
+                    .frame(width: 0.5*screenSize.width)
+                    .foregroundColor(todayColor)
+                Circle()
+                    .stroke(todayColorLight, style: StrokeStyle(lineWidth: 15.0, lineCap: .round))
+                    .frame(width: 0.72*screenSize.width)
                 Text("谨慎")
                     .font(.custom("indicator", size: screenSize.width*0.21))
                     .fontWeight(.black)
                     .shadow(radius: 5, x: 10, y: 10)
-                    .foregroundColor(todayColor)
+                    .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
                     .frame(width: screenSize.width*0.21)
                     .lineSpacing(/*@START_MENU_TOKEN@*/-13.0/*@END_MENU_TOKEN@*/)
@@ -60,13 +56,23 @@ struct softCircleView: View {
                 ZStack {
                     Circle()
                         .trim(from: 0, to: clock / 24)
-                        .stroke(lintGradient, style: StrokeStyle(lineWidth: 5.0, lineCap: .round))
-                        .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
-                        .rotationEffect(Angle(degrees: -90))
+                        .stroke(lintGradient, style: StrokeStyle(lineWidth: 16.0, lineCap: .square))
+                        .frame(width: 0.64*screenSize.width)
+                        .rotationEffect(Angle(degrees: -93))
 //                        .shadow(color: todayColor.opacity(0.5), radius: 8, x: 6, y: 5)
-                    smallRingView2()
+                    
+                    dotView()
+                    Rectangle()
+                        .frame(width: 40, height: 4)
+                        .cornerRadius(3)
+                        .foregroundColor(Color.white)
+                        .rotationEffect(Angle(degrees: Double(45)))
+                        .offset(x: 0.24*screenSize.width, y: 0.24*screenSize.width)
+                        .rotationEffect(Angle(degrees: Double(15*clock-135)))
+                    
                 }
-            .shadow(color: todayColor.opacity(0.5), radius: 8, x: 10, y: 10)
+                smallRingView2()
+                    .shadow(color: Color(.black).opacity(0.4), radius: 8, x: 10, y: 10)
                 
                 
                 
@@ -85,3 +91,19 @@ struct ContentView_Previews: PreviewProvider {
         softCircleView()
     }
 }
+
+struct dotView: View {
+    var body: some View {
+        ZStack {
+            ForEach(0..<12) {item in
+                Circle()
+                    .frame(width: 5)
+                    .foregroundColor(Color.white)
+                    .offset(x: 0.21*screenSize.width, y: 0.21*screenSize.width)
+                    .rotationEffect(Angle(degrees: Double(30*item-15)))
+                
+            }
+        }
+    }
+}
+

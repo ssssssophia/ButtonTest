@@ -44,57 +44,62 @@ struct homeView: View {
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
     let todayColor : Color = Color("lucky")
+    let todayColorLight : Color = Color("lucky-light")
 
     
     var body: some View {
 //        let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
-        let gradientReversed = LinearGradient(gradient: Gradient(colors: [todayColor.opacity(0.2), todayColor.opacity(0.01)]), startPoint: .center, endPoint: .bottom)
+        let gradientReversed = LinearGradient(gradient: Gradient(colors: [todayColor.opacity(1), todayColor.opacity(0.2)]), startPoint: .topTrailing, endPoint: .bottomLeading)
         
         return
         
         
             ZStack {
+                Rectangle()
+                    .foregroundColor(colorLight)
+//                ZStack {
+//                    Rectangle()
+//                        .foregroundColor(todayColor.opacity(0.3))
+//                        .frame(width: screenSize.width-1, height: screenSize.height)
+//                        .offset(x: -0.5*screenSize.width)
+//                        .blur(radius: 4)
+//
+//                    Text("万事")
+//                        .multilineTextAlignment(.leading)
+//                        .font(.system(size: 15))
+//                        .foregroundColor(animat ? Color(.clear) : Color("grey-light"))
+//                        .offset(x: -30, y: screenSize.height*0.125)
+//                    Button (action: {self.animat.toggle()}) {
+//                        Text("< Back to Home")
+//                    }
+//                    .offset(x: screenSize.width * -0.78, y: screenSize.height * -0.43)
+//                }
+//                .offset(x: animat ? screenSize.width*0.5 : 0, y: animat ? screenSize.height * 0: screenSize.height*0.35)
+//                .animation(.spring())
+//                ZStack {
+//                    Rectangle()
+//                        .foregroundColor(todayColor.opacity(0.3))
+//                        .frame(width: 0.5*screenSize.width-1, height: screenSize.height)
+//                        .offset(x: 0.25*screenSize.width)
+//                        .blur(radius: 4)
+//                    Text("步道")
+//                        .multilineTextAlignment(.leading)
+//                        .font(.system(size: 15))
+//                        .foregroundColor(Color("grey-light"))
+//                        .offset(x: 30, y: screenSize.height*0.125)
+//                }
+//                .offset(x: 0, y: animat ? screenSize.height : screenSize.height*0.35)
+//                .animation(.spring())
                 ZStack {
-                    Rectangle()
-                        .foregroundColor(todayColor.opacity(0.3))
-                        .frame(width: screenSize.width-1, height: screenSize.height)
-                        .offset(x: -0.5*screenSize.width)
-                        .blur(radius: 4)
-                    
-                    Text("万事")
-                        .multilineTextAlignment(.leading)
-                        .font(.system(size: 15))
-                        .foregroundColor(animat ? Color(.clear) : Color("grey-light"))
-                        .offset(x: -30, y: screenSize.height*0.125)
-                    Button (action: {self.animat.toggle()}) {
-                        Text("< Back to Home")
-                    }
-                    .offset(x: screenSize.width * -0.78, y: screenSize.height * -0.43)
-                }
-                .offset(x: animat ? screenSize.width*0.5 : 0, y: animat ? screenSize.height * 0: screenSize.height*0.35)
-                .animation(.spring())
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(todayColor.opacity(0.3))
-                        .frame(width: 0.5*screenSize.width-1, height: screenSize.height)
-                        .offset(x: 0.25*screenSize.width)
-                        .blur(radius: 4)
-                    Text("步道")
-                        .multilineTextAlignment(.leading)
-                        .font(.system(size: 15))
-                        .foregroundColor(Color("grey-light"))
-                        .offset(x: 30, y: screenSize.height*0.125)
-                }
-                .offset(x: 0, y: animat ? screenSize.height : screenSize.height*0.35)
-                .animation(.spring())
-                ZStack {
-                    ZStack{
-                        Rectangle()
-                            .foregroundColor(Color.white)
-//                            .frame(width: screenSize.width, height: screenSize.height)
-                            
+                    VStack{
                         gradientReversed
+                            .clipShape(Rectangle())
+                            .frame(height: screenSize.height*0.5)
+                            .offset(y: 20)
+                        Rectangle()
+                            .foregroundColor(todayColor)
                     }
+                    .frame(height: screenSize.height*1)
                     .cornerRadius(30)
                     .offset(y: -screenSize.height*0.125)
                     .shadow(radius: 20)
@@ -178,7 +183,7 @@ struct homeView: View {
                                 Image(systemName: "person.fill")
                                     .resizable()
                                     .frame(width: 24, height: 24)
-                                    .foregroundColor(Color("grey-light"))
+                                    .foregroundColor(Color.white)
                             }.padding(.trailing, 30)
                                     .offset(x: screenSize.width*0.4)
                         
@@ -204,7 +209,7 @@ struct homeView: View {
                                     ZStack{
                                         Circle()
                                             .frame(width: 50, height: 50)
-                                            .foregroundColor(todayColor.opacity(0.7))
+                                            .foregroundColor(todayColorLight)
                                         Text("水逆")
                                             .bold()
                                             .foregroundColor(.white)
@@ -219,7 +224,7 @@ struct homeView: View {
                        
                         Spacer()
                         todayInfoView()
-                        .offset(y:screenSize.height*0.25)
+                        .offset(y:screenSize.height*0.3)
                     }
                 }
                 .offset(x: 0, y: animat ? screenSize.height * -0.9 : 0)
@@ -256,22 +261,22 @@ struct homeView: View {
 //                            }
 //                        })
 //                    .animation(.spring())
-            ZStack {
-                Rectangle()
-                    .frame(width: 0.15*screenSize.width, height: 0.15*screenSize.width)
-                    .cornerRadius(20)
-                    .rotationEffect(Angle(degrees: 45))
-                    .foregroundColor(self.todayColor)
-                    .offset(x: 0, y: animat ? screenSize.height * -0.6 : screenSize.height*0.38)
-                    .shadow(color:self.todayColor, radius: 3, x: 0, y: 3)
-                    .animation(.spring())
-                }
-                .gesture(
-                    TapGesture()
-                        .onEnded({
-                            self.animat.toggle()
-                        })
-                )
+//            ZStack {
+//                Rectangle()
+//                    .frame(width: 0.15*screenSize.width, height: 0.15*screenSize.width)
+//                    .cornerRadius(20)
+//                    .rotationEffect(Angle(degrees: 45))
+//                    .foregroundColor(self.todayColor)
+//                    .offset(x: 0, y: animat ? screenSize.height * -0.6 : screenSize.height*0.38)
+//                    .shadow(color:self.todayColor, radius: 3, x: 0, y: 3)
+//                    .animation(.spring())
+//                }
+//                .gesture(
+//                    TapGesture()
+//                        .onEnded({
+//                            self.animat.toggle()
+//                        })
+//                )
         }
         .edgesIgnoringSafeArea(.all)
     }
