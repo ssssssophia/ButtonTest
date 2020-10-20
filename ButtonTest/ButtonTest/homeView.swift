@@ -43,8 +43,8 @@ struct homeView: View {
     
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
-    let todayColor : Color = Color("lucky")
-    let todayColorLight : Color = Color("lucky-light")
+    let todayColor : Color = Color("normal")
+    let todayColorLight : Color = Color("normal-light")
 
     
     var body: some View {

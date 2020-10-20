@@ -12,8 +12,8 @@ struct softCircleView: View {
     
     let colorLight : Color = Color("bg-light")
     let colorDark : Color = Color("bg-dark")
-    let todayColor: Color = Color("lucky")
-    let todayColorLight: Color = Color("lucky-light")
+    let todayColor: Color = Color("normal")
+    let todayColorLight: Color = Color("normal-light")
     
 //    @State var isPressed = false
     
@@ -30,14 +30,14 @@ struct softCircleView: View {
         endAngle: .degrees(0))
         
         let circleGradient = LinearGradient(
-            gradient: Gradient(colors: [todayColor, Color.white]), startPoint: .bottomTrailing, endPoint: .topLeading)
+            gradient: Gradient(colors: [todayColor, todayColor.opacity(0.4)]), startPoint: .bottomTrailing, endPoint: .topLeading)
         
         return
             
             ZStack {
                 Circle()
                     .fill(circleGradient)
-                    .frame(width: 0.7*screenSize.width)
+                    .frame(width: 0.7*screenSize.width, height: 0.7*screenSize.width)
                 Circle()
                     .frame(width: 0.5*screenSize.width)
                     .foregroundColor(todayColor)

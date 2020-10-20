@@ -83,7 +83,7 @@ struct busyHourView: View {
         return ZStack {
             if single {
                 Circle()
-                    .frame(width : 20, height : 20)
+                    .frame(width : 20)
                     .foregroundColor(Color.white)
                     .offset(y : -screenSize.width * 0.375)
                     .rotationEffect(Angle(degrees: Double(30*hourArray[0])))
