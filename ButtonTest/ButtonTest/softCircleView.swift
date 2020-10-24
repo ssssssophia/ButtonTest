@@ -10,10 +10,10 @@ import SwiftUI
 
 struct softCircleView: View {
     
-    let colorLight : Color = Color("bg-light")
-    let colorDark : Color = Color("bg-dark")
-    let todayColor: Color = Color("normal")
-    let todayColorLight: Color = Color("normal-light")
+    var colorLight : Color = Color("bg-light")
+    var colorDark : Color = Color("bg-dark")
+    var todayColor: Color = Color("normal")
+    var todayColorLight: Color = Color("normal-light")
     
 //    @State var isPressed = false
     
@@ -71,7 +71,7 @@ struct softCircleView: View {
                         .rotationEffect(Angle(degrees: Double(15*clock-135)))
                     
                 }
-                smallRingView2()
+                smallRingView2(now: clock/2, todayColorLight: self.todayColorLight)
                     .shadow(color: Color(.black).opacity(0.4), radius: 8, x: 10, y: 10)
                 
                 

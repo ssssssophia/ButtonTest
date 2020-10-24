@@ -10,6 +10,8 @@ import SwiftUI
 
 struct smallRingView2: View {
     var hours = [0,2,5,6,7,9,10]
+    var now : CGFloat = 10
+    var todayColorLight = Color("normal-light")
     
     var body: some View {
         let busyHours = busyHour(l:hours)
@@ -23,7 +25,7 @@ struct smallRingView2: View {
             
             ZStack {
                 ForEach(0..<busyHours.count, id:\.self) { i in
-                    busyHourView(hourArray:busyHours[i] as! [Int])
+                    busyHourView(hourArray:busyHours[i] as! [Int], now: self.now, todayColorLight: self.todayColorLight)
                 }
             }
             
@@ -70,30 +72,68 @@ func busyHour(l: [Int]) -> Array<Any> {
 
 struct busyHourView: View {
     var hourArray = Array([0])
+    var now : CGFloat = 10
+    var todayColorLight: Color = Color("normal-light")
     
     
     var body: some View {
         var single : Bool = true
+        var during : Bool = false
         if hourArray.count == 1 {
             single = true
         } else {
             single = false
         }
+        if CGFloat(hourArray[0]) <= now && CGFloat(hourArray[hourArray.count-1]) >= now {
+            during = true
+        } else {
+            during = false
+        }
         
         return ZStack {
             if single {
-                Circle()
-                    .frame(width : 20)
-                    .foregroundColor(Color.white)
-                    .offset(y : -screenSize.width * 0.375)
-                    .rotationEffect(Angle(degrees: Double(30*hourArray[0])))
+                if CGFloat(hourArray[0]) == now {
+                    Circle()
+                        .frame(width : 40)
+                        .foregroundColor(Color.white)
+                        .offset(y : -screenSize.width * 0.375)
+                        .rotationEffect(Angle(degrees: Double(30*hourArray[0])))
+                    Image(systemName: "airplane")
+                        .resizable()
+                        .offset(y : -screenSize.width * 0.375)
+                        .rotationEffect(Angle(degrees: Double(30*hourArray[0])))
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(Color.black)
+                } else {
+                
+                    Circle()
+                        .frame(width : 20)
+                        .foregroundColor(Color.white)
+                        .offset(y : -screenSize.width * 0.375)
+                        .rotationEffect(Angle(degrees: Double(30*hourArray[0])))
+                }
             } else {
-                Circle()
-                    .trim(from: 0, to: CGFloat(hourArray.count-1)/12 )
-                    .stroke(Color.white,style: StrokeStyle(lineWidth: 10.0, lineCap: .round))
-                    .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
-                    .foregroundColor(Color.white)
-                    .rotationEffect(Angle(degrees: Double(-90 + 30*hourArray[0])))
+                if  during {
+                    Circle()
+                        .trim(from: 0, to: CGFloat(hourArray.count-1)/12 )
+                        .stroke(Color.white,style: StrokeStyle(lineWidth: 20.0, lineCap: .round))
+                        .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
+                        .foregroundColor(Color.white)
+                        .rotationEffect(Angle(degrees: Double(-90 + 30*hourArray[0])))
+                    Image(systemName: "airplane")
+                        .resizable()
+                        .offset(y : -screenSize.width * 0.375)
+                        .rotationEffect(Angle(degrees: Double(30*hourArray[hourArray.count-1]-2)))
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(todayColorLight)
+                } else {
+                    Circle()
+                        .trim(from: 0, to: CGFloat(hourArray.count-1)/12 )
+                        .stroke(Color.white,style: StrokeStyle(lineWidth: 10.0, lineCap: .round))
+                        .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
+                        .foregroundColor(Color.white)
+                        .rotationEffect(Angle(degrees: Double(-90 + 30*hourArray[0])))
+                }
             }
         }
     }

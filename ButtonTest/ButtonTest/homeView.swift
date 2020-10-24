@@ -41,10 +41,10 @@ struct homeView: View {
     @State var showToolBar : Bool = false
     @State var contentText = String("日")
     
-    let colorLight : Color = Color("bg-light")
-    let colorDark : Color = Color("bg-dark")
-    let todayColor : Color = Color("normal")
-    let todayColorLight : Color = Color("normal-light")
+    var colorLight : Color = Color("bg-light")
+    var colorDark : Color = Color("bg-dark")
+    var todayColor : Color = Color("normal")
+    var todayColorLight : Color = Color("normal-light")
 
     
     var body: some View {
@@ -199,7 +199,7 @@ struct homeView: View {
                             } else if showYear == true{
                                 yearView()
                             } else {
-                                softCircleView()
+                                softCircleView(colorLight: self.colorLight, colorDark: self.colorDark, todayColor: self.todayColor, todayColorLight: self.todayColorLight)
                             }
                             HStack{
                                 Spacer().frame(width: screenSize.width*0.725)
