@@ -40,6 +40,11 @@ struct homeView: View {
     @State var showShuini : Bool = false
     @State var showToolBar : Bool = false
     @State var contentText = String("日")
+    @State var dayColor = Color.white
+    @State var weekColor = Color("grey-light")
+    @State var monthColor = Color("grey-light")
+    @State var yearColor = Color("grey-light")
+    @State var indicateBarOffset : Int = -104
     
     var colorLight : Color = Color("bg-light")
     var colorDark : Color = Color("bg-dark")
@@ -50,6 +55,8 @@ struct homeView: View {
     var body: some View {
 //        let gradient = LinearGradient(gradient: Gradient(colors: [colorDark, colorLight]), startPoint: .top, endPoint: .bottom)
         let gradientReversed = LinearGradient(gradient: Gradient(colors: [todayColor.opacity(1), todayColor.opacity(0.2)]), startPoint: .topTrailing, endPoint: .bottomLeading)
+        
+        
         
         return
         
@@ -106,79 +113,151 @@ struct homeView: View {
                 
                     ZStack {
                         ZStack{
-                            if !showToolBar {
-                                    Button (action: {
-//                                        withAnimation(.easeInOut) {
-                                            self.showToolBar.toggle()
-//                                        }
-                                    }) {
-                                        neumButtonView(text: .constant(contentText), todayColor: .constant(todayColor))
-                                    }
-                                    .offset(x:-screenSize.width*0.38)
-                                    
-                            } else {
+//                            if !showToolBar {
+//                                    Button (action: {
+//                                            self.showToolBar.toggle()
+////                                        }
+//                                    }) {
+//                                        neumButtonView(text: .constant(contentText), todayColor: .constant(todayColor))
+//                                    }
+//                                    .offset(x:-screenSize.width*0.38)
+//
+//                            } else {
+//                            HStack {
+//                                Button(action: {
+//                                    self.showToday = true
+//                                    self.showWeek = false
+//                                    self.showMonth = false
+//                                    self.showYear = false
+//                                    self.showShuini = false
+//                                    withAnimation {
+//                                        self.showToolBar.toggle()
+//                                    }
+//                                    self.contentText = "日"
+//                                }) {
+//                                    neumButton(text: "日", todayColor: todayColor)
+//                                    .scaleEffect(0.8)
+//                                }.padding(5)
+//                                Button(action: {
+//                                    self.showToday = false
+//                                    self.showWeek = true
+//                                    self.showMonth = false
+//                                    self.showYear = false
+//                                    self.showShuini = false
+//                                    withAnimation {
+//                                        self.showToolBar.toggle()
+//                                    }
+//                                    self.contentText = "周"
+//                                }) {
+//                                    neumButton(text: "周", todayColor: todayColor)
+//                                    .scaleEffect(0.8)
+//                                }.padding(5)
+//                                Button(action: {
+//                                    self.showToday = false
+//                                    self.showWeek = false
+//                                    self.showMonth = true
+//                                    self.showYear = false
+//                                    self.showShuini = false
+//                                    withAnimation {
+//                                        self.showToolBar.toggle()
+//                                    }
+//                                    self.contentText = "月"
+//                                }) {
+//                                    neumButton(text: "月", todayColor: todayColor)
+//                                    .scaleEffect(0.8)
+//                                }.padding(5)
+//                                Button(action: {
+//                                    self.showToday = false
+//                                    self.showWeek = false
+//                                    self.showMonth = false
+//                                    self.showYear = true
+//                                    self.showShuini = false
+//                                    withAnimation {
+//                                        self.showToolBar.toggle()
+//                                    }
+//                                    self.contentText = "年"
+//                                }) {
+//                                    neumButton(text: "年", todayColor: todayColor)
+//                                        .scaleEffect(0.8)
+//                                }.padding(5)
+//                                }
+//                            .transition(.moveAndFade)
+//                            .offset(x:-screenSize.width*0.12)
+//
+//                                }
+                            
                             HStack {
                                 Button(action: {
+                                    self.dayColor = Color.white
+                                    self.weekColor = Color("grey-light")
+                                    self.monthColor = Color("grey-light")
+                                    self.yearColor = Color("grey-light")
+                                    self.indicateBarOffset = -104
                                     self.showToday = true
                                     self.showWeek = false
                                     self.showMonth = false
                                     self.showYear = false
                                     self.showShuini = false
-                                    withAnimation {
-                                        self.showToolBar.toggle()
-                                    }
-                                    self.contentText = "日"
                                 }) {
-                                    neumButton(text: "日", todayColor: todayColor)
-                                    .scaleEffect(0.8)
-                                }.padding(5)
+                                    Text("今日")
+                                        .foregroundColor(dayColor)
+                                }
+                                Spacer()
+                                    .frame(width: 20)
                                 Button(action: {
+                                    self.dayColor = Color("grey-light")
+                                    self.weekColor = Color.white
+                                    self.monthColor = Color("grey-light")
+                                    self.yearColor = Color("grey-light")
+                                    self.indicateBarOffset = -48
                                     self.showToday = false
                                     self.showWeek = true
                                     self.showMonth = false
                                     self.showYear = false
-                                    self.showShuini = false
-                                    withAnimation {
-                                        self.showToolBar.toggle()
-                                    }
-                                    self.contentText = "周"
-                                }) {
-                                    neumButton(text: "周", todayColor: todayColor)
-                                    .scaleEffect(0.8)
-                                }.padding(5)
+                                    self.showShuini = false}) {
+                                    Text("本周")
+                                        .foregroundColor(weekColor)
+                                }
+                                Spacer()
+                                    .frame(width: 20)
                                 Button(action: {
+                                    self.dayColor = Color("grey-light")
+                                    self.weekColor = Color("grey-light")
+                                    self.monthColor = Color.white
+                                    self.yearColor = Color("grey-light")
+                                    self.indicateBarOffset = 5
                                     self.showToday = false
                                     self.showWeek = false
                                     self.showMonth = true
                                     self.showYear = false
-                                    self.showShuini = false
-                                    withAnimation {
-                                        self.showToolBar.toggle()
-                                    }
-                                    self.contentText = "月"
-                                }) {
-                                    neumButton(text: "月", todayColor: todayColor)
-                                    .scaleEffect(0.8)
-                                }.padding(5)
+                                    self.showShuini = false}) {
+                                    Text("本月")
+                                        .foregroundColor(monthColor)
+                                }
+                                Spacer()
+                                    .frame(width: 20)
                                 Button(action: {
+                                    self.dayColor = Color("grey-light")
+                                    self.weekColor = Color("grey-light")
+                                    self.monthColor = Color("grey-light")
+                                    self.yearColor = Color.white
+                                    self.indicateBarOffset = 62
                                     self.showToday = false
                                     self.showWeek = false
                                     self.showMonth = false
                                     self.showYear = true
-                                    self.showShuini = false
-                                    withAnimation {
-                                        self.showToolBar.toggle()
-                                    }
-                                    self.contentText = "年"
-                                }) {
-                                    neumButton(text: "年", todayColor: todayColor)
-                                        .scaleEffect(0.8)
-                                }.padding(5)
+                                    self.showShuini = false}) {
+                                    Text("本年")
+                                        .foregroundColor(yearColor)
                                 }
-                            .transition(.moveAndFade)
-                            .offset(x:-screenSize.width*0.12)
-                                
-                                }
+                                Spacer()
+                                    .frame(width: 40)
+                            }
+                            Rectangle()
+                                .foregroundColor(Color.white)
+                                .frame(width: 40, height: 2)
+                                .offset(x: CGFloat(indicateBarOffset),y: 12)
+                                .animation(.spring())
                             Button(action: {}) {
                                 Image(systemName: "person.fill")
                                     .resizable()
@@ -228,7 +307,7 @@ struct homeView: View {
                     }
                 }
                 .offset(x: 0, y: animat ? screenSize.height * -0.9 : 0)
-                .animation(.spring())
+                .animation(.spring(response: 0.1))
                 
 //                wanshiView()
 //                    .offset(x: 0, y: wanshiState.height)

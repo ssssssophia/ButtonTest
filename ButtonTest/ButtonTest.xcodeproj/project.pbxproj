@@ -10,6 +10,7 @@
 		EC37E3FB253B26B900E339BC /* softCircleView0.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37E3FA253B26B900E339BC /* softCircleView0.swift */; };
 		EC4911D52430E085005E7DA9 /* smallRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4911D42430E085005E7DA9 /* smallRingView.swift */; };
 		EC56796624B9B55100A7FA24 /* weekView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56796524B9B55100A7FA24 /* weekView2.swift */; };
+		EC5896C225456B0400300DC5 /* toolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5896C125456B0400300DC5 /* toolBarView.swift */; };
 		EC6E9C6F24C74F2400D874E0 /* blurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6E9C6E24C74F2400D874E0 /* blurView.swift */; };
 		ECA391EE247A4A97007C9139 /* weekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA391ED247A4A97007C9139 /* weekView.swift */; };
 		ECA391F0247A4AA5007C9139 /* monthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA391EF247A4AA5007C9139 /* monthView.swift */; };
@@ -50,6 +51,7 @@
 		EC37E3FA253B26B900E339BC /* softCircleView0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = softCircleView0.swift; sourceTree = "<group>"; };
 		EC4911D42430E085005E7DA9 /* smallRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smallRingView.swift; sourceTree = "<group>"; };
 		EC56796524B9B55100A7FA24 /* weekView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekView2.swift; sourceTree = "<group>"; };
+		EC5896C125456B0400300DC5 /* toolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toolBarView.swift; sourceTree = "<group>"; };
 		EC6E9C6E24C74F2400D874E0 /* blurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blurView.swift; sourceTree = "<group>"; };
 		ECA391ED247A4A97007C9139 /* weekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekView.swift; sourceTree = "<group>"; };
 		ECA391EF247A4AA5007C9139 /* monthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = monthView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				ECA391ED247A4A97007C9139 /* weekView.swift */,
 				EC56796524B9B55100A7FA24 /* weekView2.swift */,
 				ECD2E95A242774F2005991F8 /* homeView.swift */,
+				EC5896C125456B0400300DC5 /* toolBarView.swift */,
 				ECEB414424F3ACC1000365BA /* neumButtonView.swift */,
 				EC4911D42430E085005E7DA9 /* smallRingView.swift */,
 				ECEB414024EF7BB7000365BA /* smallRingView2.swift */,
@@ -313,6 +316,7 @@
 				ECD2E95B242774F2005991F8 /* homeView.swift in Sources */,
 				ECEFF4FC241A1918000D5E03 /* SceneDelegate.swift in Sources */,
 				EC4911D52430E085005E7DA9 /* smallRingView.swift in Sources */,
+				EC5896C225456B0400300DC5 /* toolBarView.swift in Sources */,
 				ECA391F2247A4CD3007C9139 /* yearView.swift in Sources */,
 				ECEB414524F3ACC1000365BA /* neumButtonView.swift in Sources */,
 				EC37E3FB253B26B900E339BC /* softCircleView0.swift in Sources */,
