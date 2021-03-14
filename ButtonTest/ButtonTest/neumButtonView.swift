@@ -62,31 +62,32 @@ struct neumToolbarView_Previews: PreviewProvider {
 struct neumButton: View {
     var text = String("日")
     var todayColor : Color = Color("lucky")
+    var ColorLight : Color = Color("green-sub1")
     var body: some View {
         VStack {
             Text("\(text)")
-                .font(.system(size: 25, weight: .bold))
-                .foregroundColor(Color("grey-light"))
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(todayColor)
         }
         .frame(width: 50, height: 50)
         .background(
             ZStack {
                 Rectangle()
-                .cornerRadius(10)
+                .cornerRadius(12)
                     .foregroundColor(Color.white)
-                LinearGradient(gradient: Gradient(colors: [Color.white, Color("bg-light")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(gradient: Gradient(colors: [Color.white, ColorLight]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 Rectangle()
                     .stroke(Color.clear, lineWidth: 5)
                     .cornerRadius(10)
-                    .shadow(color: todayColor.opacity(0.3), radius: 3, x: -2.5, y: -2.5)
+                    .shadow(color: Color.black.opacity(0.3), radius: 5, x: -2.5, y: -2.5)
                 Rectangle()
                     .stroke(Color.clear, lineWidth: 5)
                     .cornerRadius(10)
-                    .shadow(color: Color.white, radius: 3, x: 1.5, y: 1.5)
+                    .shadow(color: ColorLight, radius: 5, x: 1.5, y: 1.5)
             }
         )
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(color: Color.white, radius: 10, x: -10, y: -10)
-            .shadow(color: todayColor.opacity(0.3), radius: 10, x: 10, y: 10)
+            .shadow(color: ColorLight, radius: 8, x: -4, y: -4)
+        .shadow(color: Color.black.opacity(0.3), radius: 10, x: 10, y: 10)
     }
 }

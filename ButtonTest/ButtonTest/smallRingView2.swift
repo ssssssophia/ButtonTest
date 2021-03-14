@@ -95,8 +95,9 @@ struct busyHourView: View {
                 if CGFloat(hourArray[0]) == now {
                     Circle()
                         .frame(width : 40)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color(.white).opacity(0.65))
                         .offset(y : -screenSize.width * 0.375)
+                        .blur(radius: 0.5)
                         .rotationEffect(Angle(degrees: Double(30*hourArray[0])))
                     Image(systemName: "airplane")
                         .resizable()
@@ -104,21 +105,24 @@ struct busyHourView: View {
                         .rotationEffect(Angle(degrees: Double(30*hourArray[0])))
                         .frame(width: 20, height: 20)
                         .foregroundColor(Color.black)
+                        
                 } else {
                 
                     Circle()
                         .frame(width : 20)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color(.white).opacity(0.65))
                         .offset(y : -screenSize.width * 0.375)
+                        .blur(radius: 0.5)
                         .rotationEffect(Angle(degrees: Double(30*hourArray[0])))
                 }
             } else {
                 if  during {
                     Circle()
                         .trim(from: 0, to: CGFloat(hourArray.count-1)/12 )
-                        .stroke(Color.white,style: StrokeStyle(lineWidth: 22.0, lineCap: .round))
+                        .stroke(Color(.white).opacity(0.65),style: StrokeStyle(lineWidth: 22.0, lineCap: .round))
                         .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
                         .foregroundColor(Color.white)
+                        .blur(radius: 0.5)
                         .rotationEffect(Angle(degrees: Double(-90 + 30*hourArray[0])))
                     Image(systemName: "3.circle")
                         .resizable()
@@ -130,9 +134,10 @@ struct busyHourView: View {
                 } else {
                     Circle()
                         .trim(from: 0, to: CGFloat(hourArray.count-1)/12 )
-                        .stroke(Color.white,style: StrokeStyle(lineWidth: 10.0, lineCap: .round))
+                        .stroke(Color(.white).opacity(0.65),style: StrokeStyle(lineWidth: 10.0, lineCap: .round))
                         .frame(width: 0.75*screenSize.width, height: 0.75*screenSize.width)
                         .foregroundColor(Color.white)
+                        .blur(radius: 0.5)
                         .rotationEffect(Angle(degrees: Double(-90 + 30*hourArray[0])))
                 }
             }

@@ -30,7 +30,7 @@ struct softCircleView: View {
         endAngle: .degrees(0))
         
         let circleGradient = LinearGradient(
-            gradient: Gradient(colors: [todayColor, todayColor.opacity(0.4)]), startPoint: .bottomTrailing, endPoint: .topLeading)
+            gradient: Gradient(colors: [todayColor, todayColor.opacity(0)]), startPoint: .bottomTrailing, endPoint: .topLeading)
         
         return
             
@@ -38,16 +38,45 @@ struct softCircleView: View {
                 Circle()
                     .fill(circleGradient)
                     .frame(width: 0.7*screenSize.width, height: 0.7*screenSize.width)
-                Circle()
-                    .frame(width: 0.5*screenSize.width)
-                    .foregroundColor(todayColor)
+                blurView(style: .systemUltraThinMaterialLight)
+                    .clipShape(Circle())
+                    .foregroundColor(todayColor.opacity(0.5))
+                    .frame(width: 0.7 * screenSize.width, height: 0.7 * screenSize.height)
+                    .shadow(color: todayColor.opacity(0.7),radius: 5)
+                
                 Circle()
                     .stroke(todayColorLight, style: StrokeStyle(lineWidth: 15.0, lineCap: .round))
                     .frame(width: 0.72*screenSize.width)
+                blurView(style: .systemUltraThinMaterialLight)
+                    .clipShape(Circle())
+                    .foregroundColor(todayColorLight.opacity(0.1))
+                    .frame(width: 0.75 * screenSize.width, height: 0.75 * screenSize.height)
+                    .blur(radius: 2)
+                    .shadow(color: todayColor.opacity(0.7),radius: 5,x: 3,y: 3)
+                
+                Circle()
+                    .stroke(Color.clear, lineWidth: 5)
+                    .frame(width: 0.5*screenSize.width)
+                    .shadow(color: todayColorLight.opacity(0.8), radius: 15, x: -8, y: -8)
+                Circle()
+                    .stroke(Color.clear, lineWidth: 5)
+                    .frame(width: 0.5*screenSize.width)
+                    .shadow(color: todayColor.opacity(0.8), radius: 10, x: -5, y: -5)
+                    
+                Circle()
+                    .frame(width: 0.5*screenSize.width)
+                    .blur(radius: 1)
+                    .foregroundColor(todayColor)
+                    .shadow(color: Color(.black).opacity(0.4), radius: 12, x: 10, y: 12)
+            
+                    
+                    
+                    
+                    
                 Text("谨慎")
                     .font(.custom("indicator", size: screenSize.width*0.21))
                     .fontWeight(.black)
-                    .shadow(radius: 5, x: 10, y: 10)
+                    .shadow(radius: 4, x: 12, y: 12)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
                     .frame(width: screenSize.width*0.21)
@@ -71,7 +100,7 @@ struct softCircleView: View {
                         .rotationEffect(Angle(degrees: Double(15*clock-135)))
                     
                 }
-                smallRingView2(now: clock/2, todayColorLight: self.todayColorLight)
+                smallRingView2(todayColorLight: self.todayColorLight)
                     .shadow(color: Color(.black).opacity(0.4), radius: 8, x: 10, y: 10)
                 
                 
