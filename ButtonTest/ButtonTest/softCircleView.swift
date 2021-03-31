@@ -46,13 +46,15 @@ struct softCircleView: View {
                 
                 Circle()
                     .stroke(todayColorLight, style: StrokeStyle(lineWidth: 15.0, lineCap: .round))
-                    .frame(width: 0.72*screenSize.width)
+                    .frame(width: 0.7*screenSize.width)
+                    .blur(radius: 20)
+                    
                 blurView(style: .systemUltraThinMaterialLight)
                     .clipShape(Circle())
                     .foregroundColor(todayColorLight.opacity(0.1))
                     .frame(width: 0.75 * screenSize.width, height: 0.75 * screenSize.height)
                     .blur(radius: 2)
-                    .shadow(color: todayColor.opacity(0.7),radius: 5,x: 3,y: 3)
+                    .shadow(color: todayColor.opacity(0.4),radius: 5,x: 3,y: 3)
                 
                 Circle()
                     .stroke(Color.clear, lineWidth: 5)

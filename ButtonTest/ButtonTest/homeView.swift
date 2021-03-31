@@ -55,7 +55,7 @@ struct homeView: View {
     
     var body: some View {
         
-        let todaySet = greenColorSet
+        let todaySet = blueColorSet
         let colorLight : Color = todaySet[2]
         let colorDark : Color = todaySet[5]
         let todayColor : Color = todaySet[1]
